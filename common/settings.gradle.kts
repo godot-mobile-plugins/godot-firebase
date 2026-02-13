@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 	}
 }
 
-rootProject.name = "godot-plugin-template-plugin"
+rootProject.name = "godot-firebase-plugin"
 include(":android")
 include(":addon")
 

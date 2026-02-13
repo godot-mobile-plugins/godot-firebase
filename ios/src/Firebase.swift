@@ -1,10 +1,10 @@
 //
-// © 2026-present https://github.com/<<GitHubUsername>>
+// © 2026-present https://github.com/firebase-team
 //
 
 import Foundation
 
-@objc public class PluginTemplate: NSObject {
+@objc public class Firebase: NSObject {
 
 	// TODO: callbacks to be set by the Objective-C bridge
 	@objc public var onThisHappened: ((_ info: [String: Any]) -> Void)?

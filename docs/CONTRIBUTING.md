@@ -1,10 +1,10 @@
-# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="28"> Contributing
+# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="28"> Contributing
 
-Thank you for your interest in contributing to the Godot PluginTemplate Plugin! This guide will help you understand the project structure, build processes, and development workflows.
+Thank you for your interest in contributing to the Godot Firebase Plugin! This guide will help you understand the project structure, build processes, and development workflows.
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Table of Contents
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Table of Contents
 
 - [Project Structure](#-project-structure)
 - [Prerequisites](#-prerequisites)
@@ -19,7 +19,7 @@ Thank you for your interest in contributing to the Godot PluginTemplate Plugin! 
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Project structure
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Project structure
 
 ```text
 .
@@ -61,7 +61,7 @@ Thank you for your interest in contributing to the Godot PluginTemplate Plugin! 
 │
 ├── ios/                                # iOS platform module
 │   ├── src/                           # iOS platform code
-│   ├── plugin_template_plugin.xcodeproj/     # Xcode project
+│   ├── firebase_plugin.xcodeproj/     # Xcode project
 │   ├── build/                         # iOS build outputs
 │   ├── config/
 │   │   ├── config.properties          # iOS configuration
@@ -82,7 +82,7 @@ Thank you for your interest in contributing to the Godot PluginTemplate Plugin! 
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Prerequisites
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Prerequisites
 
 ### General Requirements
 - **Git** - For version control
@@ -142,7 +142,7 @@ scons --version
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Configuration
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Configuration
 
 The build files are largely static and shared across all GMP plugins. Any plugin-specific build customization is handled through the following configuration files:
 
@@ -164,7 +164,7 @@ The build files are largely static and shared across all GMP plugins. Any plugin
         └── config.properties          # iOS configuration
 ```
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Common Configuration
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Common Configuration
 
 The `common/config/config.properties` file contains core plugin settings:
 
@@ -191,7 +191,7 @@ gradle.another=another.gradle.kts
 - `godotVersion` - Must match your target Godot version
 - `godotReleaseType` - Determines which Godot binary to download
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Gradle Configuration
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Gradle Configuration
 
 The `common/gradle/libs.versions.toml` defines dependency versions:
 
@@ -209,7 +209,7 @@ android-library = { id = "com.android.library", version.ref = "android-plugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ```
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Android SDK Configuration
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Android SDK Configuration
 
 Create `common/local.properties` to specify your Android SDK location:
 
@@ -226,7 +226,7 @@ sdk.dir=/usr/lib/android-sdk
 
 **Note:** This file is gitignored and must be created locally.
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> iOS Configuration
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> iOS Configuration
 
 The `ios/config/config.properties` file contains iOS-specific settings:
 
@@ -249,14 +249,14 @@ dependencies=Dependency-SDK:1.0.0
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Development Workflow
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Development Workflow
 
 ### Initial Setup
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/godot-mobile-plugins/godot-plugin-template.git
-   cd godot-plugin-template
+   git clone https://github.com/godot-mobile-plugins/godot-firebase.git
+   cd godot-firebase
    ```
 
 2. **Configure Android SDK:**
@@ -304,9 +304,9 @@ dependencies=Dependency-SDK:1.0.0
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Building
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Building
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Android Builds
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Android Builds
 
 #### Quick Reference
 
@@ -370,11 +370,11 @@ dependencies=Dependency-SDK:1.0.0
 - **Debug AAR:** `android/build/outputs/aar/*-debug.aar`
 - **Release AAR:** `android/build/outputs/aar/*-release.aar`
 - **Built plugin:** `common/build/plugin/`
-- **Release archive:** `common/build/archive/PluginTemplatePlugin-Android-v*.zip`
+- **Release archive:** `common/build/archive/FirebasePlugin-Android-v*.zip`
 
 ---
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> iOS Builds
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> iOS Builds
 
 #### Quick Reference
 
@@ -440,7 +440,7 @@ The iOS build process involves several steps:
 - **Build artifacts:** `ios/build/`
 - **Frameworks:** `ios/build/framework/`
 - **Archives:** `ios/build/lib/*.xcarchive`
-- **Release archive:** `ios/build/release/PluginTemplatePlugin-iOS-v*.zip`
+- **Release archive:** `ios/build/release/FirebasePlugin-iOS-v*.zip`
 
 #### Common iOS Build Patterns
 
@@ -463,7 +463,7 @@ The iOS build process involves several steps:
 
 ---
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Cross-Platform Builds
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Cross-Platform Builds
 
 Use the main `build.sh` script for coordinated builds:
 
@@ -485,7 +485,7 @@ Use the main `build.sh` script for coordinated builds:
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Testing
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Testing
 
 ### Testing in Demo App
 
@@ -513,7 +513,7 @@ Use the main `build.sh` script for coordinated builds:
 adb install demo/export/android/demo.apk
 
 # View logs
-adb logcat | grep -i PluginTemplate
+adb logcat | grep -i Firebase
 ```
 
 ### iOS Testing (macOS only)
@@ -538,7 +538,7 @@ Consider adding:
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Creating Releases
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Creating Releases
 
 ### Full Multi-Platform Release
 
@@ -548,9 +548,9 @@ Consider adding:
 ```
 
 This creates:
-- `release/PluginTemplatePlugin-Android-v*.zip`
-- `release/PluginTemplatePlugin-iOS-v*.zip`
-- `release/PluginTemplatePlugin-Multi-v*.zip` (combined)
+- `release/FirebasePlugin-Android-v*.zip`
+- `release/FirebasePlugin-iOS-v*.zip`
+- `release/FirebasePlugin-Multi-v*.zip` (combined)
 
 ### Platform-Specific Releases
 
@@ -580,9 +580,9 @@ This creates:
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Installation
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Installation
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Installing to Demo App
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Installing to Demo App
 
 ```bash
 # Install both platforms
@@ -592,19 +592,19 @@ This creates:
 ./script/build.sh -d
 ```
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Installing to Your Project
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Installing to Your Project
 
 ```bash
 # Using install script
-./script/install.sh -t /path/to/your/project -z /path/to/PluginTemplatePlugin-*.zip
+./script/install.sh -t /path/to/your/project -z /path/to/FirebasePlugin-*.zip
 
 # Example
-./script/install.sh -t ~/MyGame -z release/PluginTemplatePlugin-Multi-v6.0.zip
+./script/install.sh -t ~/MyGame -z release/FirebasePlugin-Multi-v6.0.zip
 ```
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Troubleshooting
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Troubleshooting
 
 ### Common Build Issues
 
@@ -657,13 +657,13 @@ rm -rf ios/build/DerivedData
 
 ### Getting Help
 
-- Check existing [GitHub Issues](https://github.com/godot-mobile-plugins/godot-plugin-template/issues)
-- Check exısting [GitHub Discussions](https://github.com/godot-mobile-plugins/godot-plugin-template/discussions)
+- Check existing [GitHub Issues](https://github.com/godot-mobile-plugins/godot-firebase/issues)
+- Check exısting [GitHub Discussions](https://github.com/godot-mobile-plugins/godot-firebase/discussions)
 - Review [Godot documentation](https://docs.godotengine.org/)
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Contributing Guidelines
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Contributing Guidelines
 
 ### Code Style
 
@@ -721,7 +721,7 @@ Include:
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Additional Resources
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Additional Resources
 
 - [Godot Engine Documentation](https://docs.godotengine.org/)
 - [Android Developer Documentation](https://developer.android.com/)

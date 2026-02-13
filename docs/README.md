@@ -1,69 +1,13 @@
 <p align="center">
-	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/demo/assets/plugin-template-android.png">
+	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-android.png">
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/demo/assets/plugin-template-ios.png">
+	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-ios.png">
 </p>
 
 ---
 
-<!--TO-BE-DELETED-AFTER-INIT-BEGIN-->
-</br>
 
----
-# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Template Initialization
----
-
-**Run the `init.sh` script in order to initialize the repository.**
-
-</br></br>
-
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> How To Run `init.sh`
-
-**Use the `-n` option to rename plugin:**
-
-```
-$ godot-plugin-template > ./script/init.sh -n NameOfYourPlugin
-```
-or optionally specify the name of the plugin author and author's GitHub username:
-```
-$ godot-plugin-template > ./script/init.sh -n NameOfYourPlugin -a "Author Name" -g github-username"
-```
-
-</br>
-
-**Example:**
-
-```
-$ godot-plugin-template > ./script/init.sh -n GameBooster
-```
-or:
-```
-$ godot-plugin-template > ./script/init.sh -n GameBooster -a "Maria Wang" -g mariawang"
-```
-
-</br></br>
-
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Dry Run `init.sh`
-
-**Use the `-d` option to dry-run `init.sh`:**
-
-```
-$ godot-plugin-template > ./script/init.sh -n NameOfYourPlugin -d
-```
-or:
-```
-$ godot-plugin-template > ./script/init.sh -n NameOfYourPlugin -a "Author Name" -g github-username" -d
-```
-
-**The dry-run will show what would be done without making changes.**
-
----
----
-
-</br></br></br></br></br></br></br></br></br></br>
-<!--TO-BE-DELETED-AFTER-INIT-END-->
-
-# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Godot Plugin Template Plugin
+# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Godot Firebase Plugin
 
 A Godot plugin that provides a unified GDScript interface for getting information on plugin templates on **Android** and **iOS**.
 
@@ -74,7 +18,7 @@ A Godot plugin that provides a unified GDScript interface for getting informatio
 
 ---
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Table of Contents
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
 - [Signals](#signals)
@@ -90,18 +34,18 @@ A Godot plugin that provides a unified GDScript interface for getting informatio
 
 <a name="installation"></a>
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Installation
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Installation
 _Before installing this plugin, make sure to uninstall any previous versions of the same plugin._
 
 _If installing both Android and iOS versions of the plugin in the same project, then make sure that both versions use the same addon interface version._
 
-There are 2 ways to install the `PluginTemplate` plugin into your project:
+There are 2 ways to install the `Firebase` plugin into your project:
 - Through the Godot Editor's AssetLib
 - Manually by downloading archives from Github
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="18"> Installing via AssetLib
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="18"> Installing via AssetLib
 Steps:
-- search for and select the `PluginTemplate` plugin in Godot Editor
+- search for and select the `Firebase` plugin in Godot Editor
 - click `Download` button
 - on the installation dialog...
 	- keep `Change Install Folder` setting pointing to your project's root directory
@@ -109,10 +53,10 @@ Steps:
 	- click `Install` button
 - enable the plugin via the `Plugins` tab of `Project->Project Settings...` menu, in the Godot Editor
 
-#### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="16"> Installing both Android and iOS versions of the plugin in the same project
+#### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="16"> Installing both Android and iOS versions of the plugin in the same project
 When installing via AssetLib, the installer may display a warning that states "_[x number of]_ files conflict with your project and won't be installed." You can ignore this warning since both versions use the same addon code.
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="18"> Installing manually
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="18"> Installing manually
 Steps:
 - download release archive from Github
 - unzip the release archive
@@ -124,26 +68,26 @@ Steps:
 <a name="usage"></a>
 
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Usage
-Add `PluginTemplate` node to your main scene or an autoload global scene.
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Usage
+Add `Firebase` node to your main scene or an autoload global scene.
 
-- use the `PluginTemplate` node's `get_plugin_template()` method to get information on all available plugin templates
-- connect `PluginTemplate` node signals
-	- `template_ready(a_template: PluginTemplateInfo)`
+- use the `Firebase` node's `get_firebase()` method to get information on all available plugin templates
+- connect `Firebase` node signals
+	- `template_ready(a_template: FirebaseInfo)`
 	- ...
 
 Example usage:
 ```
-@onready var plugin_template := $PluginTemplate
+@onready var firebase := $Firebase
 
 func _ready():
-	plugin_template.template_ready.connect(_on_template_ready)
+	firebase.template_ready.connect(_on_template_ready)
 
-	var templates: Array[PluginTemplateInfo] = plugin_template.get_plugin_template()
+	var templates: Array[FirebaseInfo] = firebase.get_firebase()
 	for template in templates:
 		print("Template description: %s" % [template.get_description()])
 
-func _on_template_ready(template: PluginTemplateInfo):
+func _on_template_ready(template: FirebaseInfo):
 	print("Template ready:", template.get_description())
 ```
 
@@ -151,25 +95,25 @@ func _on_template_ready(template: PluginTemplateInfo):
 
 <a name="signals"></a>
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Signals
-- register listeners to the following signals of the `PluginTemplate` node:
-	- `template_ready(a_template: PluginTemplateInfo)`
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Signals
+- register listeners to the following signals of the `Firebase` node:
+	- `template_ready(a_template: FirebaseInfo)`
 	- ...
 
 ---
 
 <a name="methods"></a>
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Methods
-- `get_plugin_template() -> Array[PluginTemplateInfo]` - returns an array of `PluginTemplateInfo` objects
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Methods
+- `get_firebase() -> Array[FirebaseInfo]` - returns an array of `FirebaseInfo` objects
 
 ---
 
 <a name="classes"></a>
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Classes
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Classes
 
-### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="16"> PluginTemplateInfo
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="16"> FirebaseInfo
 - Encapsulates plugin template information.
 - Properties:
 	- `description`: description of the template
@@ -180,7 +124,7 @@ func _on_template_ready(template: PluginTemplateInfo):
 
 <a name="platform-specific-notes"></a>
 
-## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="20"> Platform-Specific Notes
+## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Platform-Specific Notes
 
 ### Android
 - Download Android export template and enable gradle build from export settings
@@ -201,14 +145,14 @@ func _on_template_ready(template: PluginTemplateInfo):
 
 <a name="links"></a>
 
-# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Links
+# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Links
 
 - [AssetLib Entry Android](https://godotengine.org/asset-library/asset/9999)
 - [AssetLib Entry iOS](https://godotengine.org/asset-library/asset/8888)
 
 ---
 
-# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> All Plugins
+# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> All Plugins
 
 | Plugin | Android | iOS | Free | Open Source | License |
 | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -221,22 +165,22 @@ func _on_template_ready(template: PluginTemplateInfo):
 | [Connection State](https://github.com/godot-mobile-plugins/godot-connection-state) | ✅ | ✅ | ✅ | ✅ | MIT |
 | [OAuth 2.0](https://github.com/godot-mobile-plugins/godot-oauth2) | ✅ | ✅ | ✅ | ✅ | MIT |
 | [QR](https://github.com/godot-mobile-plugins/godot-qr) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Plugin Template](https://github.com/godot-mobile-plugins/godot-plugin-template) | ✅ | ✅ | ✅ | ✅ | MIT |
+| [Firebase](https://github.com/godot-mobile-plugins/godot-firebase) | ✅ | ✅ | ✅ | ✅ | MIT |
 
 ---
 
 <a name="credits"></a>
 
-# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Credits
+# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Credits
 
-Developed by [<<AuthorName>>](https://github.com/<<GitHubUsername>>)
+Developed by [Godot Firebase Team](https://github.com/orgs/godot-mobile-plugins/teams/firebase-team)
 
-Original repository: [Godot Plugin Template Plugin](https://github.com/godot-mobile-plugins/godot-plugin-template)
+Original repository: [Godot Firebase Plugin](https://github.com/godot-mobile-plugins/godot-firebase)
 
 ---
 
 <a name="contributing"></a>
 
-# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-plugin-template/main/addon/src/icon.png" width="24"> Contributing
+# <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Contributing
 
-See [our guide](https://github.com/godot-mobile-plugins/godot-plugin-template?tab=contributing-ov-file) if you would like to contribute to this project.
+See [our guide](https://github.com/godot-mobile-plugins/godot-firebase?tab=contributing-ov-file) if you would like to contribute to this project.

@@ -1,8 +1,8 @@
 //
-// © 2026-present https://github.com/<<GitHubUsername>>
+// © 2026-present https://github.com/firebase-team
 //
 
-package org.godotengine.plugin.plugintemplate;
+package org.godotengine.plugin.firebase;
 
 import android.app.Activity;
 import android.util.Log;
@@ -20,15 +20,15 @@ import org.godotengine.godot.plugin.SignalInfo;
 import org.godotengine.godot.plugin.UsedByGodot;
 
 
-public class PluginTemplatePlugin extends GodotPlugin {
-	public static final String CLASS_NAME = PluginTemplatePlugin.class.getSimpleName();
+public class FirebasePlugin extends GodotPlugin {
+	public static final String CLASS_NAME = FirebasePlugin.class.getSimpleName();
 	static final String LOG_TAG = "godot::" + CLASS_NAME;
 
 
 	static final String TEMPLATE_READY_SIGNAL = "template_ready";
 	// TODO: Define all signals
 
-	public PluginTemplatePlugin(Godot godot) {
+	public FirebasePlugin(Godot godot) {
 		super(godot);
 	}
 
@@ -62,8 +62,8 @@ public class PluginTemplatePlugin extends GodotPlugin {
 	}
 
 	@UsedByGodot
-	public Object[] get_plugin_template() {
-		Log.d(LOG_TAG, "get_plugin_template() invoked");
+	public Object[] get_firebase() {
+		Log.d(LOG_TAG, "get_firebase() invoked");
 
 		List<Dictionary> resultList = new ArrayList<>();
 
