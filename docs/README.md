@@ -1,4 +1,16 @@
 <p align="center">
+	<a href="https://github.com/godot-mobile-plugins/godot-firebase">
+	<img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-firebase?style=social" />
+	</a>
+	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/total" />
+	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/latest/total" />
+	<img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-firebase" />
+	<img src="https://img.shields.io/github/last-commit/godot-mobile-plugins/godot-firebase" />
+	<img src="https://img.shields.io/github/contributors/godot-mobile-plugins/godot-firebase" />
+	<img src="https://img.shields.io/github/license/godot-mobile-plugins/godot-firebase" />
+</p>
+
+<p align="center">
 	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-android.png">
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-ios.png">
@@ -184,3 +196,14 @@ Original repository: [Godot Firebase Plugin](https://github.com/godot-mobile-plu
 # <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Contributing
 
 See [our guide](https://github.com/godot-mobile-plugins/godot-firebase?tab=contributing-ov-file) if you would like to contribute to this project.
+
+---
+
+# ⭐ Like This Plugin?
+
+If this plugin helps you, please consider:
+
+- ⭐ Starring the repository
+- 🐛 Reporting issues
+- 💡 Suggesting features
+- ❤️ Supporting development
