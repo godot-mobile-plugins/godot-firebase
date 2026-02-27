@@ -259,8 +259,9 @@ embedded_frameworks=res://ios/framework/*.xcframework,...
 # Linker flags
 flags=-ObjC,-Wl,...
 
-# SPM dependencies (format: https://github.com/owner/repo.git|version|PackageName)
-dependencies=https://github.com/owner/repo.git|version|PackageName
+# SPM dependencies (format: dependency.<ProductName>=<URL>|<minimumVersion>)
+dependency.ProductName=https://github.com/owner/repo.git|minimumVersion
+dependency.ProductName2=https://github.com/owner/repo2.git|minimumVersion2
 ```
 
 ---
@@ -400,7 +401,7 @@ If using Android Studio, make sure to open the root Gradle project from the `com
 #### Quick Reference
 
 ```bash
-# Clean and rebuild iOS
+# Clean and run iOS debug build
 ./script/build.sh -i -- -cb
 
 **Note:** Options after `--` are passed to `build_ios.sh`
@@ -414,8 +415,8 @@ If using Android Studio, make sure to open the root Gradle project from the `com
 # Full clean rebuild (removes Godot)
 ./script/build_ios.sh -cgA
 
-# Build and create archive
-./script/build_ios.sh -cbz
+# Clean, build and create archive
+./script/build_ios.sh -cbBR
 
 # Custom timeout for header generation (seconds)
 ./script/build_ios.sh -H -t 60
@@ -427,7 +428,8 @@ If using Android Studio, make sure to open the root Gradle project from the `com
 |--------|-------------|
 | `-a` | Generate headers, add packages, and build |
 | `-A` | Download Godot + full build |
-| `-b` | Build plugin only |
+| `-b` | Run debug build |
+| `-B` | Run release build |
 | `-c` | Clean existing build |
 | `-g` | Remove Godot directory |
 | `-G` | Download Godot |

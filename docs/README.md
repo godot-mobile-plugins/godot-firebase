@@ -1,20 +1,19 @@
 <p align="center">
+	<img width="128" height="128" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-android.png">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img width="128" height="128" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-ios.png">
+</p>
+
+---
+
+<div align="center">
 	<a href="https://github.com/godot-mobile-plugins/godot-firebase">
 	<img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-firebase?style=social" />
 	</a>
 	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/total" />
 	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/latest/total" />
 	<img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-firebase" />
-	<img src="https://img.shields.io/github/last-commit/godot-mobile-plugins/godot-firebase" />
-	<img src="https://img.shields.io/github/contributors/godot-mobile-plugins/godot-firebase" />
-	<img src="https://img.shields.io/github/license/godot-mobile-plugins/godot-firebase" />
-</p>
-
-<p align="center">
-	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-android.png">
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-ios.png">
-</p>
+</div>
 
 ---
 
@@ -199,11 +198,16 @@ See [our guide](https://github.com/godot-mobile-plugins/godot-firebase?tab=contr
 
 ---
 
-# ⭐ Like This Plugin?
+# 💖 Support the Project
 
-If this plugin helps you, please consider:
+If this plugin has helped you, consider supporting its development! Every bit of support helps keep the plugin updated and bug-free.
 
-- ⭐ Starring the repository
-- 🐛 Reporting issues
-- 💡 Suggesting features
-- ❤️ Supporting development
+| | Ways to Help | How to do it |
+| :--- | :--- | :--- |
+|✨⭐| **Spread the Word** | [Star this repo](https://github.com/godot-mobile-plugins/godot-firebase/stargazers) to help others find it. |
+|💡✨| **Give Feedback** | [Open an issue](https://github.com/godot-mobile-plugins/godot-firebase/issues) or [suggest a feature](https://github.com/godot-mobile-plugins/godot-firebase/issues/new). |
+|🧩| **Contribute** | [Submit a PR](https://github.com/godot-mobile-plugins/godot-firebase?tab=contributing-ov-file) to help improve the codebase. |
+|❤️| **Buy a Coffee** | Support the maintainers on GitHub Sponsors or other platforms. |
+
+## ⭐ Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=godot-mobile-plugins/godot-firebase&type=Date)](https://star-history.com/#godot-mobile-plugins/godot-firebase&Date)
