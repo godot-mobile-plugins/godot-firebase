@@ -26,6 +26,7 @@ public class FirebasePlugin extends GodotPlugin {
 
 
 	static final String TEMPLATE_READY_SIGNAL = "template_ready";
+
 	// TODO: Define all signals
 
 	public FirebasePlugin(Godot godot) {

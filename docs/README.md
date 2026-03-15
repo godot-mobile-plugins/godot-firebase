@@ -4,19 +4,14 @@
 	<img width="128" height="128" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/demo/assets/firebase-ios.png">
 </p>
 
----
-
 <div align="center">
-	<a href="https://github.com/godot-mobile-plugins/godot-firebase">
-	<img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-firebase?style=social" />
-	</a>
-	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/total" />
-	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/latest/total" />
-	<img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-firebase" />
+	<a href="https://github.com/godot-mobile-plugins/godot-godot-firebase"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-godot-firebase?label=Stars&style=plastic" height="40"/></a>
+	<img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-godot-firebase?label=Latest%20Release&style=plastic" height="40"/>
+	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-godot-firebase/latest/total?label=Downloads&style=plastic" height="40"/>
+	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-godot-firebase/total?label=Total%20Downloads&style=plastic" height="40"/>
 </div>
 
----
-
+<br>
 
 # <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> Godot Firebase Plugin
 
@@ -27,7 +22,7 @@ A Godot plugin that provides a unified GDScript interface for getting informatio
 - Know when a template is ready
 - ...
 
----
+<br>
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Table of Contents
 - [Installation](#installation)
@@ -41,7 +36,7 @@ A Godot plugin that provides a unified GDScript interface for getting informatio
 - [Credits](#credits)
 - [Contributing](#contributing)
 
----
+<br>
 
 <a name="installation"></a>
 
@@ -74,8 +69,6 @@ Steps:
 - copy to your Godot project's root directory
 - enable the plugin via the `Plugins` tab of `Project->Project Settings...` menu, in the Godot Editor
 
----
-
 <a name="usage"></a>
 
 
@@ -102,8 +95,6 @@ func _on_template_ready(template: FirebaseInfo):
 	print("Template ready:", template.get_description())
 ```
 
----
-
 <a name="signals"></a>
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Signals
@@ -111,14 +102,10 @@ func _on_template_ready(template: FirebaseInfo):
 	- `template_ready(a_template: FirebaseInfo)`
 	- ...
 
----
-
 <a name="methods"></a>
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> Methods
 - `get_firebase() -> Array[FirebaseInfo]` - returns an array of `FirebaseInfo` objects
-
----
 
 <a name="classes"></a>
 
@@ -130,8 +117,6 @@ func _on_template_ready(template: FirebaseInfo):
 	- `description`: description of the template
 	- `other`: ...
 	- ...
-
----
 
 <a name="platform-specific-notes"></a>
 
@@ -152,7 +137,7 @@ func _on_template_ready(template: FirebaseInfo):
 - View XCode logs while running the game for troubleshooting.
 - See [Godot iOS Export Troubleshooting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html#troubleshooting).
 
----
+<br>
 
 <a name="links"></a>
 
@@ -161,24 +146,24 @@ func _on_template_ready(template: FirebaseInfo):
 - [AssetLib Entry Android](https://godotengine.org/asset-library/asset/9999)
 - [AssetLib Entry iOS](https://godotengine.org/asset-library/asset/8888)
 
----
+<br>
 
 # <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="24"> All Plugins
 
-| Plugin | Android | iOS | Free | Open Source | License |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| [Admob](https://github.com/godot-sdk-integrations/godot-admob) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Notification Scheduler](https://github.com/godot-mobile-plugins/godot-notification-scheduler) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Deeplink](https://github.com/godot-mobile-plugins/godot-deeplink) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Share](https://github.com/godot-mobile-plugins/godot-share) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [In-App Review](https://github.com/godot-mobile-plugins/godot-inapp-review) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Native Camera](https://github.com/godot-mobile-plugins/godot-native-camera) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Connection State](https://github.com/godot-mobile-plugins/godot-connection-state) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [OAuth 2.0](https://github.com/godot-mobile-plugins/godot-oauth2) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [QR](https://github.com/godot-mobile-plugins/godot-qr) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Firebase](https://github.com/godot-mobile-plugins/godot-firebase) | ✅ | ✅ | ✅ | ✅ | MIT |
+| ✦ | Plugin | Android | iOS | Latest Release | Downloads | Stars |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| <img src="https://raw.githubusercontent.com/godot-sdk-integrations/godot-admob/main/addon/src/icon.png" width="20"> | [Admob](https://github.com/godot-sdk-integrations/godot-admob) | ✅ | ✅ | <a href="https://github.com/godot-sdk-integrations/godot-admob/releases"><img src="https://img.shields.io/github/release-date/godot-sdk-integrations/godot-admob?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-sdk-integrations/godot-admob?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-sdk-integrations/godot-admob/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-sdk-integrations/godot-admob/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-sdk-integrations/godot-admob?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-connection-state/main/addon/src/icon.png" width="20"> | [Connection State](https://github.com/godot-mobile-plugins/godot-connection-state) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-connection-state/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-connection-state?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-connection-state?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-connection-state/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-connection-state/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-connection-state?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="20"> | [Deeplink](https://github.com/godot-mobile-plugins/godot-deeplink) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-deeplink/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-deeplink?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-deeplink?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-deeplink/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-deeplink/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-deeplink?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> | [Firebase](https://github.com/godot-mobile-plugins/godot-firebase) | ✅ | ✅ | - <!-- <a href="https://github.com/godot-mobile-plugins/godot-firebase/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-firebase?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-firebase?label=%20" /></a> --> | - <!-- <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/total?label=%20" /> --> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-firebase?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-inapp-review/main/addon/src/icon.png" width="20"> | [In-App Review](https://github.com/godot-mobile-plugins/godot-inapp-review) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-inapp-review/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-inapp-review?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-inapp-review?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-inapp-review/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-inapp-review/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-inapp-review?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-native-camera/main/addon/src/icon.png" width="20"> | [Native Camera](https://github.com/godot-mobile-plugins/godot-native-camera) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-native-camera/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-native-camera?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-native-camera?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-native-camera/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-native-camera/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-native-camera?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-notification-scheduler/main/addon/src/icon.png" width="20"> | [Notification Scheduler](https://github.com/godot-mobile-plugins/godot-notification-scheduler) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-notification-scheduler/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-notification-scheduler?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-notification-scheduler?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-notification-scheduler/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-notification-scheduler/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-notification-scheduler?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-oauth2/main/addon/src/icon.png" width="20"> | [OAuth 2.0](https://github.com/godot-mobile-plugins/godot-oauth2) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-oauth2/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-oauth2?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-oauth2?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-oauth2/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-oauth2/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-oauth2?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-qr/main/addon/src/icon.png" width="20"> | [QR](https://github.com/godot-mobile-plugins/godot-qr) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-qr/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-qr?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-qr?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-qr/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-qr/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-qr?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-share/main/addon/src/icon.png" width="20"> | [Share](https://github.com/godot-mobile-plugins/godot-share) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-share/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-share?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-share?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-share/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-share/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-share?style=plastic&label=%20" /> |
 
----
+<br>
 
 <a name="credits"></a>
 
@@ -186,9 +171,11 @@ func _on_template_ready(template: FirebaseInfo):
 
 Developed by [Godot Firebase Team](https://github.com/orgs/godot-mobile-plugins/teams/firebase-team)
 
+Based on [Godot Mobile Plugin Template v5](https://github.com/godot-mobile-plugins/godot-plugin-template/tree/v5)
+
 Original repository: [Godot Firebase Plugin](https://github.com/godot-mobile-plugins/godot-firebase)
 
----
+<br>
 
 <a name="contributing"></a>
 
@@ -196,13 +183,13 @@ Original repository: [Godot Firebase Plugin](https://github.com/godot-mobile-plu
 
 See [our guide](https://github.com/godot-mobile-plugins/godot-firebase?tab=contributing-ov-file) if you would like to contribute to this project.
 
----
+<br>
 
 # 💖 Support the Project
 
 If this plugin has helped you, consider supporting its development! Every bit of support helps keep the plugin updated and bug-free.
 
-| | Ways to Help | How to do it |
+| ✦ | Ways to Help | How to do it |
 | :--- | :--- | :--- |
 |✨⭐| **Spread the Word** | [Star this repo](https://github.com/godot-mobile-plugins/godot-firebase/stargazers) to help others find it. |
 |💡✨| **Give Feedback** | [Open an issue](https://github.com/godot-mobile-plugins/godot-firebase/issues) or [suggest a feature](https://github.com/godot-mobile-plugins/godot-firebase/issues/new). |
