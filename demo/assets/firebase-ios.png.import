@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2myrgf8pkumi"
-path="res://.godot/imported/firebase-ios.png-c5c84f4b4dab55e95105ba744eaa4765.ctex"
+path="res://.godot/imported/firebase-ios.png-4fdb339927431616d7f12046ea484a6d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/firebase-ios.png"
-dest_files=["res://.godot/imported/firebase-ios.png-c5c84f4b4dab55e95105ba744eaa4765.ctex"]
+dest_files=["res://.godot/imported/firebase-ios.png-4fdb339927431616d7f12046ea484a6d.ctex"]
 
 [params]
 

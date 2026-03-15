@@ -8,13 +8,10 @@
 
 #import "firebase_logger.h"
 
-
 const String TEMPLATE_READY_SIGNAL = "template_ready";
 // TODO: Define all signals
 
-
-FirebasePlugin* FirebasePlugin::instance = NULL;
-
+FirebasePlugin *FirebasePlugin::instance = NULL;
 
 void FirebasePlugin::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_firebase"), &FirebasePlugin::get_firebase);

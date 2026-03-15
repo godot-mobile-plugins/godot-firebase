@@ -130,7 +130,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "firebase_plugin" */;
+			buildConfigurationList = 90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "plugin" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -424,7 +424,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "firebase_plugin" */ = {
+		90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "plugin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90CAAA9B24E71FF10013969F /* Debug */,
@@ -453,23 +453,7 @@
 				minimumVersion = 12.0.0;
 			};
 		};
-		10635C0EC0FFFF6BEBB225A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.0.0;
-			};
-		};
 		85A827CA325A1500CAE9B787 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.0.0;
-			};
-		};
-		9752007FF6FD1E5ABC94E2E4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
