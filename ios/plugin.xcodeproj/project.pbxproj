@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0705CB392F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CB382F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift */; };
 		0721C6A22F82629000A9BA75 /* libfirebase_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CAAA9424E71FF10013969F /* libfirebase_plugin.a */; };
 		0721C6C12F82639B00A9BA75 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0721C6C02F82639B00A9BA75 /* XCTest.framework */; platformFilter = ios; };
-		0721C6D22F82700000A9BA75 /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721C6D02F82700000A9BA75 /* FirebaseTests.swift */; };
-		0721C6D32F82700000A9BA75 /* FirebaseLoggerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0721C6D12F82700000A9BA75 /* FirebaseLoggerTests.mm */; };
-		078A3A442F336DA7008B4674 /* firebase_logger.h in Sources */ = {isa = PBXBuildFile; fileRef = 07C98E012F3348BA002D3480 /* firebase_logger.h */; };
-		078A3A452F336DA7008B4674 /* firebase_logger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07C98E022F3348BA002D3480 /* firebase_logger.mm */; };
-		078A3A462F336DA7008B4674 /* firebase_plugin.h in Sources */ = {isa = PBXBuildFile; fileRef = 07C98E032F3348BA002D3480 /* firebase_plugin.h */; };
-		078A3A472F336DA7008B4674 /* firebase_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07C98E042F3348BA002D3480 /* firebase_plugin.mm */; };
-		078A3A482F336DA7008B4674 /* firebase_plugin_bootstrap.h in Sources */ = {isa = PBXBuildFile; fileRef = 07C98E052F3348BA002D3480 /* firebase_plugin_bootstrap.h */; };
-		078A3A492F336DA7008B4674 /* firebase_plugin_bootstrap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07C98E062F3348BA002D3480 /* firebase_plugin_bootstrap.mm */; };
-		078A3A4A2F336DA7008B4674 /* firebase_plugin-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 07C98E072F3348BA002D3480 /* firebase_plugin-Bridging-Header.h */; };
-		078A3A4B2F336DA7008B4674 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C98E082F3348BA002D3480 /* Firebase.swift */; };
+		075063982F9DCA2600BD141D /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 366E34235EC876B649BEBBF1 /* FirebaseCore */; };
+		075063992F9DCA2600BD141D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8C62579FF4B40F50BA0448A6 /* FirebaseAuth */; };
+		075063A92F9DCA6900BD141D /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750639D2F9DCA6900BD141D /* Authentication.swift */; };
+		075063AA2F9DCA6900BD141D /* firebase_logger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 075063A22F9DCA6900BD141D /* firebase_logger.mm */; };
+		075063AB2F9DCA6900BD141D /* GodotFirebaseUser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0750639B2F9DCA6900BD141D /* GodotFirebaseUser.mm */; };
+		075063AC2F9DCA6900BD141D /* FirebasePluginSignalEmitter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0750639F2F9DCA6900BD141D /* FirebasePluginSignalEmitter.mm */; };
+		075063AD2F9DCA6900BD141D /* firebase_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 075063A42F9DCA6900BD141D /* firebase_plugin.mm */; };
+		075063AE2F9DCA6900BD141D /* firebase_plugin_bootstrap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 075063A62F9DCA6900BD141D /* firebase_plugin_bootstrap.mm */; };
+		07DD23A92F9E491100AAA676 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 926CAD543C80A2757521E588 /* GoogleSignIn */; };
+		07DD23AB2F9E492F00AAA676 /* AuthenticationFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23AA2F9E492F00AAA676 /* AuthenticationFixtures.swift */; };
+		07DD23AE2F9E494100AAA676 /* GodotFirebaseUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23AD2F9E494100AAA676 /* GodotFirebaseUserTests.swift */; };
+		07DD23AF2F9E494100AAA676 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23AC2F9E494100AAA676 /* AuthenticationTests.swift */; };
+		07DD23B22F9E495C00AAA676 /* AuthProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23B12F9E495C00AAA676 /* AuthProviding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,18 +48,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0705CB382F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GodotFirebaseUser+Testing.swift"; sourceTree = "<group>"; };
 		0721C69E2F82629000A9BA75 /* firebase_plugin_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = firebase_plugin_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0721C6C02F82639B00A9BA75 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		0721C6D02F82700000A9BA75 /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
-		0721C6D12F82700000A9BA75 /* FirebaseLoggerTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FirebaseLoggerTests.mm; sourceTree = "<group>"; };
-		07C98E012F3348BA002D3480 /* firebase_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firebase_logger.h; sourceTree = "<group>"; };
-		07C98E022F3348BA002D3480 /* firebase_logger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = firebase_logger.mm; sourceTree = "<group>"; };
-		07C98E032F3348BA002D3480 /* firebase_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firebase_plugin.h; sourceTree = "<group>"; };
-		07C98E042F3348BA002D3480 /* firebase_plugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = firebase_plugin.mm; sourceTree = "<group>"; };
-		07C98E052F3348BA002D3480 /* firebase_plugin_bootstrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firebase_plugin_bootstrap.h; sourceTree = "<group>"; };
-		07C98E062F3348BA002D3480 /* firebase_plugin_bootstrap.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = firebase_plugin_bootstrap.mm; sourceTree = "<group>"; };
-		07C98E072F3348BA002D3480 /* firebase_plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "firebase_plugin-Bridging-Header.h"; sourceTree = "<group>"; };
-		07C98E082F3348BA002D3480 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		0750639A2F9DCA6900BD141D /* GodotFirebaseUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GodotFirebaseUser.h; sourceTree = "<group>"; };
+		0750639B2F9DCA6900BD141D /* GodotFirebaseUser.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GodotFirebaseUser.mm; sourceTree = "<group>"; };
+		0750639D2F9DCA6900BD141D /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		0750639E2F9DCA6900BD141D /* FirebasePluginSignalEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirebasePluginSignalEmitter.h; sourceTree = "<group>"; };
+		0750639F2F9DCA6900BD141D /* FirebasePluginSignalEmitter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FirebasePluginSignalEmitter.mm; sourceTree = "<group>"; };
+		075063A12F9DCA6900BD141D /* firebase_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firebase_logger.h; sourceTree = "<group>"; };
+		075063A22F9DCA6900BD141D /* firebase_logger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = firebase_logger.mm; sourceTree = "<group>"; };
+		075063A32F9DCA6900BD141D /* firebase_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firebase_plugin.h; sourceTree = "<group>"; };
+		075063A42F9DCA6900BD141D /* firebase_plugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = firebase_plugin.mm; sourceTree = "<group>"; };
+		075063A52F9DCA6900BD141D /* firebase_plugin_bootstrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firebase_plugin_bootstrap.h; sourceTree = "<group>"; };
+		075063A62F9DCA6900BD141D /* firebase_plugin_bootstrap.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = firebase_plugin_bootstrap.mm; sourceTree = "<group>"; };
+		075063A72F9DCA6900BD141D /* firebase_plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "firebase_plugin-Bridging-Header.h"; sourceTree = "<group>"; };
+		07DD23AA2F9E492F00AAA676 /* AuthenticationFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationFixtures.swift; sourceTree = "<group>"; };
+		07DD23AC2F9E494100AAA676 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		07DD23AD2F9E494100AAA676 /* GodotFirebaseUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodotFirebaseUserTests.swift; sourceTree = "<group>"; };
+		07DD23B02F9E495C00AAA676 /* AuthenticationEmitting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticationEmitting.h; sourceTree = "<group>"; };
+		07DD23B12F9E495C00AAA676 /* AuthProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviding.swift; sourceTree = "<group>"; };
 		90CAAA9424E71FF10013969F /* libfirebase_plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfirebase_plugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -73,6 +85,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07DD23A92F9E491100AAA676 /* GoogleSignIn in Frameworks */,
+				075063992F9DCA2600BD141D /* FirebaseAuth in Frameworks */,
+				075063982F9DCA2600BD141D /* FirebaseCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +97,7 @@
 		073E18652F835E0400D42B57 /* fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				07DD23AA2F9E492F00AAA676 /* AuthenticationFixtures.swift */,
 			);
 			path = fixtures;
 			sourceTree = "<group>";
@@ -89,8 +105,9 @@
 		073E186F2F835E0400D42B57 /* unit */ = {
 			isa = PBXGroup;
 			children = (
-				0721C6D02F82700000A9BA75 /* FirebaseTests.swift */,
-				0721C6D12F82700000A9BA75 /* FirebaseLoggerTests.mm */,
+				0705CB382F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift */,
+				07DD23AC2F9E494100AAA676 /* AuthenticationTests.swift */,
+				07DD23AD2F9E494100AAA676 /* GodotFirebaseUserTests.swift */,
 			);
 			path = unit;
 			sourceTree = "<group>";
@@ -104,17 +121,39 @@
 			path = test;
 			sourceTree = "<group>";
 		};
-		07C98E092F3348BA002D3480 /* src */ = {
+		0750639C2F9DCA6900BD141D /* model */ = {
 			isa = PBXGroup;
 			children = (
-				07C98E012F3348BA002D3480 /* firebase_logger.h */,
-				07C98E022F3348BA002D3480 /* firebase_logger.mm */,
-				07C98E032F3348BA002D3480 /* firebase_plugin.h */,
-				07C98E042F3348BA002D3480 /* firebase_plugin.mm */,
-				07C98E052F3348BA002D3480 /* firebase_plugin_bootstrap.h */,
-				07C98E062F3348BA002D3480 /* firebase_plugin_bootstrap.mm */,
-				07C98E072F3348BA002D3480 /* firebase_plugin-Bridging-Header.h */,
-				07C98E082F3348BA002D3480 /* Firebase.swift */,
+				0750639A2F9DCA6900BD141D /* GodotFirebaseUser.h */,
+				0750639B2F9DCA6900BD141D /* GodotFirebaseUser.mm */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		075063A02F9DCA6900BD141D /* module */ = {
+			isa = PBXGroup;
+			children = (
+				07DD23B02F9E495C00AAA676 /* AuthenticationEmitting.h */,
+				07DD23B12F9E495C00AAA676 /* AuthProviding.swift */,
+				0750639D2F9DCA6900BD141D /* Authentication.swift */,
+				0750639E2F9DCA6900BD141D /* FirebasePluginSignalEmitter.h */,
+				0750639F2F9DCA6900BD141D /* FirebasePluginSignalEmitter.mm */,
+			);
+			path = module;
+			sourceTree = "<group>";
+		};
+		075063A82F9DCA6900BD141D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0750639C2F9DCA6900BD141D /* model */,
+				075063A02F9DCA6900BD141D /* module */,
+				075063A12F9DCA6900BD141D /* firebase_logger.h */,
+				075063A22F9DCA6900BD141D /* firebase_logger.mm */,
+				075063A32F9DCA6900BD141D /* firebase_plugin.h */,
+				075063A42F9DCA6900BD141D /* firebase_plugin.mm */,
+				075063A52F9DCA6900BD141D /* firebase_plugin_bootstrap.h */,
+				075063A62F9DCA6900BD141D /* firebase_plugin_bootstrap.mm */,
+				075063A72F9DCA6900BD141D /* firebase_plugin-Bridging-Header.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -122,8 +161,8 @@
 		90CAAA8B24E71FF10013969F = {
 			isa = PBXGroup;
 			children = (
+				075063A82F9DCA6900BD141D /* src */,
 				073E18702F835E0400D42B57 /* test */,
-				07C98E092F3348BA002D3480 /* src */,
 				90CAAA9524E71FF10013969F /* Products */,
 				90CAAAA824E72A8A0013969F /* Frameworks */,
 			);
@@ -183,6 +222,7 @@
 			packageProductDependencies = (
 				366E34235EC876B649BEBBF1 /* FirebaseCore */,
 				8C62579FF4B40F50BA0448A6 /* FirebaseAuth */,
+				926CAD543C80A2757521E588 /* GoogleSignIn */,
 			);
 			productName = firebase_plugin;
 			productReference = 90CAAA9424E71FF10013969F /* libfirebase_plugin.a */;
@@ -220,6 +260,7 @@
 			packageReferences = (
 				01426E1A61F0D772A309305C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				85A827CA325A1500CAE9B787 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				571F77AC579BD93B9C50FE84 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 90CAAA9524E71FF10013969F /* Products */;
 			projectDirPath = "";
@@ -246,8 +287,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0721C6D22F82700000A9BA75 /* FirebaseTests.swift in Sources */,
-				0721C6D32F82700000A9BA75 /* FirebaseLoggerTests.mm in Sources */,
+				0705CB392F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift in Sources */,
+				07DD23AB2F9E492F00AAA676 /* AuthenticationFixtures.swift in Sources */,
+				07DD23AE2F9E494100AAA676 /* GodotFirebaseUserTests.swift in Sources */,
+				07DD23AF2F9E494100AAA676 /* AuthenticationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,14 +298,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				078A3A442F336DA7008B4674 /* firebase_logger.h in Sources */,
-				078A3A452F336DA7008B4674 /* firebase_logger.mm in Sources */,
-				078A3A462F336DA7008B4674 /* firebase_plugin.h in Sources */,
-				078A3A472F336DA7008B4674 /* firebase_plugin.mm in Sources */,
-				078A3A482F336DA7008B4674 /* firebase_plugin_bootstrap.h in Sources */,
-				078A3A492F336DA7008B4674 /* firebase_plugin_bootstrap.mm in Sources */,
-				078A3A4A2F336DA7008B4674 /* firebase_plugin-Bridging-Header.h in Sources */,
-				078A3A4B2F336DA7008B4674 /* Firebase.swift in Sources */,
+				075063A92F9DCA6900BD141D /* Authentication.swift in Sources */,
+				075063AA2F9DCA6900BD141D /* firebase_logger.mm in Sources */,
+				075063AB2F9DCA6900BD141D /* GodotFirebaseUser.mm in Sources */,
+				075063AC2F9DCA6900BD141D /* FirebasePluginSignalEmitter.mm in Sources */,
+				075063AD2F9DCA6900BD141D /* firebase_plugin.mm in Sources */,
+				075063AE2F9DCA6900BD141D /* firebase_plugin_bootstrap.mm in Sources */,
+				07DD23B22F9E495C00AAA676 /* AuthProviding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,6 +817,14 @@
 				minimumVersion = 12.0.0;
 			};
 		};
+		571F77AC579BD93B9C50FE84 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.0;
+			};
+		};
 		85A827CA325A1500CAE9B787 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -795,6 +845,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85A827CA325A1500CAE9B787 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		926CAD543C80A2757521E588 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 571F77AC579BD93B9C50FE84 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

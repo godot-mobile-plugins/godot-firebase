@@ -315,7 +315,7 @@ val androidDependencies =
         .named("libs")
         .run {
             libraryAliases
-                .filter { it != "rewrite.static.analysis" && !it.startsWith("test.") }
+                .filter { it.startsWith("plugin.") }
                 .map { findLibrary(it).get().get() }
         }
 
@@ -339,7 +339,7 @@ val testRuntimeOnlyDependencies =
 val artifactType = Attribute.of("artifactType", String::class.java)
 
 dependencies {
-    "rewrite"(libs.rewrite.static.analysis)
+    "rewrite"(libs.style.rewrite.static.analysis)
     implementation("godot:godot-lib:${godotConfig.godotVersion}.${godotConfig.godotReleaseType}@aar")
     androidDependencies.forEach { implementation(it) }
     testDependencies.forEach { testImplementation(it) }

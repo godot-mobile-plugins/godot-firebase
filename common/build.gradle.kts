@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.undercouch.download) apply false
     alias(libs.plugins.openrewrite) apply false
     alias(libs.plugins.node) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
 }
 
 // -- Load config data class ----------------------------------------------------
@@ -154,7 +153,7 @@ tasks {
             ).joinToString(" -o ") { "-name \"$it\"" }
 
         val excludePatterns =
-            listOf("node_modules", ".git", "build", ".gradle", ".idea", "bin", "release")
+            listOf("node_modules", ".git", "build", ".gradle", ".idea", "bin", "release", "framework")
                 .joinToString(" ") { "-not -path \"*/$it/*\"" }
 
         commandLine(

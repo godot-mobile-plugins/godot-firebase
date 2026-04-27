@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://bcqb5hwnjbtob" path="res://Main.gd" id="1_wt50o"]
 [ext_resource type="Texture2D" uid="uid://cy0mnncxevupr" path="res://assets/firebase-android.png" id="2_qti4s"]
 [ext_resource type="Texture2D" uid="uid://b2myrgf8pkumi" path="res://assets/firebase-ios.png" id="3_cm0pq"]
-[ext_resource type="Script" uid="uid://btidbdni4vc41" path="res://addons/FirebasePlugin/Firebase.gd" id="4_cm0pq"]
+[ext_resource type="Script" uid="uid://bkhy81jy7no4r" path="res://addons/FirebasePlugin/Firebase.gd" id="4_cm0pq"]
+[ext_resource type="Script" uid="uid://cgec82xbmenwh" path="res://addons/FirebasePlugin/module/FirebaseAuth.gd" id="5_fos0i"]
 
 [node name="Main" type="Node" unique_id=1123035515]
 script = ExtResource("1_wt50o")
@@ -26,7 +27,7 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainContainer" unique_id=2128535198]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 15
 
 [node name="TextureHBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainContainer/VBoxContainer" unique_id=1312120128]
 layout_mode = 2
@@ -61,11 +62,125 @@ theme_override_font_sizes/font_size = 24
 text = "Firebase Demo"
 horizontal_alignment = 1
 
-[node name="GetButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer" unique_id=1018416499]
-custom_minimum_size = Vector2(200, 50)
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/MainContainer/VBoxContainer" unique_id=140304159]
+layout_mode = 2
+current_tab = 0
+tab_0/title = "Sign In/Up"
+tab_1/title = "Email"
+tab_2/title = "Google"
+
+[node name="SignInUpVBC" type="VBoxContainer" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer" unique_id=1926376575]
+layout_mode = 2
+theme_override_constants/separation = 6
+metadata/_tab_index = 0
+metadata/_tab_name = "Sign In/Up"
+
+[node name="EmailLE" type="LineEdit" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC" unique_id=507231359]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Email"
+
+[node name="PasswordLE" type="LineEdit" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC" unique_id=339567132]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Password"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC" unique_id=1256380886]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SignVBC" type="VBoxContainer" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer" unique_id=112681061]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateUserButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/SignVBC" unique_id=1018416499]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+text = "Create User"
+
+[node name="SignInButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/SignVBC" unique_id=1896802618]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+text = "Sign In"
+
+[node name="AnonSignInButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/SignVBC" unique_id=507533209]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+text = "Sign In Anonymously"
+
+[node name="IsSignedInButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/SignVBC" unique_id=1536408223]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+text = "Is Signed In?"
+
+[node name="OtherVBC" type="VBoxContainer" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer" unique_id=1945304760]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GetUserButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/OtherVBC" unique_id=48782955]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+text = "Get User"
+
+[node name="SignOutButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/OtherVBC" unique_id=183721362]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+text = "Sign Out"
+
+[node name="DeleteUserButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/OtherVBC" unique_id=2105875799]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+text = "Get User"
+
+[node name="EmailVBC" type="VBoxContainer" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer" unique_id=2086326913]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 20
+metadata/_tab_index = 1
+metadata/_tab_name = "Email"
+
+[node name="VerifyEmailButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/EmailVBC" unique_id=364907947]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Get Firebase"
+text = "Send Verification Email"
+
+[node name="ResetEmailButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/EmailVBC" unique_id=665735082]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Send Password Reset Email
+"
+
+[node name="GoogleVBC" type="VBoxContainer" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer" unique_id=305664078]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 20
+metadata/_tab_index = 2
+metadata/_tab_name = "Google"
+
+[node name="LinkGoogleButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/GoogleVBC" unique_id=702524533]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Link With Google"
+
+[node name="SignInGoogleButton" type="Button" parent="CanvasLayer/MainContainer/VBoxContainer/TabContainer/GoogleVBC" unique_id=1881078809]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sign In With Google"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MainContainer/VBoxContainer" unique_id=2056820444]
 custom_minimum_size = Vector2(0, 210)
@@ -77,4 +192,18 @@ scroll_following = true
 [node name="Firebase" type="Node" parent="." unique_id=1218466913]
 script = ExtResource("4_cm0pq")
 
-[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/GetButton" to="." method="_on_get_button_pressed"]
+[node name="FirebaseAuth" type="Node" parent="Firebase" unique_id=271307314]
+script = ExtResource("5_fos0i")
+metadata/_custom_type_script = "uid://cgec82xbmenwh"
+
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/SignVBC/CreateUserButton" to="." method="_on_create_user_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/SignVBC/SignInButton" to="." method="_on_sign_in_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/SignVBC/AnonSignInButton" to="." method="_on_anon_sign_in_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/SignVBC/IsSignedInButton" to="." method="_on_is_signed_in_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/OtherVBC/GetUserButton" to="." method="_on_get_user_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/OtherVBC/SignOutButton" to="." method="_on_sign_out_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/SignInUpVBC/HBoxContainer/OtherVBC/DeleteUserButton" to="." method="_on_delete_user_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/EmailVBC/VerifyEmailButton" to="." method="_on_verify_email_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/EmailVBC/ResetEmailButton" to="." method="_on_reset_email_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/GoogleVBC/LinkGoogleButton" to="." method="_on_link_google_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainContainer/VBoxContainer/TabContainer/GoogleVBC/SignInGoogleButton" to="." method="_on_sign_in_google_button_pressed"]
