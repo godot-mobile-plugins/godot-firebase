@@ -1,7 +1,6 @@
 //
 // © 2026-present Firebase Team https://github.com/firebase-team
 //
-
 package org.godotengine.plugin.firebase
 
 import android.app.Activity
@@ -13,8 +12,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.tasks.Task
-import com.google.firebase.FirebaseApp
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import io.mockk.Runs
@@ -52,7 +51,6 @@ import org.junit.jupiter.api.Test
  */
 @DisplayName("Authentication")
 class AuthenticationTest {
-
     // -------------------------------------------------------------------------
     // Shared mocks
     // -------------------------------------------------------------------------
@@ -76,7 +74,7 @@ class AuthenticationTest {
 
         // Mock Firebase early — BEFORE creating FirebasePlugin or Authentication
         mockkStatic(FirebaseApp::class)
-        mockkStatic(FirebaseAuth::class)        // ← Important: mock FirebaseAuth companion
+        mockkStatic(FirebaseAuth::class) // ← Important: mock FirebaseAuth companion
 
         every { FirebaseApp.getInstance() } returns mockk(relaxed = true)
 
@@ -133,7 +131,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("init()")
     inner class Init {
-
         @Test
         @DisplayName("skips GoogleSignInClient creation when resource ID is not found")
         fun `missing resource id aborts silently`() {
@@ -157,7 +154,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("isSignedIn()")
     inner class IsSignedIn {
-
         @Test
         @DisplayName("returns true when FirebaseAuth has a current user")
         fun `returns true when user is present`() {
@@ -180,7 +176,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("getCurrentUser()")
     inner class GetCurrentUser {
-
         @Test
         @DisplayName("returns a GodotFirebaseUser wrapping the current FirebaseUser")
         fun `wraps current user`() {
@@ -205,7 +200,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("createUser()")
     inner class CreateUser {
-
         @Test
         @DisplayName("emits auth_success with user data on success")
         fun `emits auth_success on success`() {
@@ -258,7 +252,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("signIn()")
     inner class SignIn {
-
         @Test
         @DisplayName("emits auth_success with user data on success")
         fun `emits auth_success on success`() {
@@ -311,7 +304,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("signInAnonymously()")
     inner class SignInAnonymously {
-
         @Test
         @DisplayName("emits auth_success when sign-in succeeds")
         fun `emits auth_success on success`() {
@@ -377,7 +369,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("signOut()")
     inner class SignOut {
-
         @Test
         @DisplayName("emits sign_out_success = true when Google sign-out completes")
         fun `emits sign_out_success true on complete`() {
@@ -415,7 +406,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("sendVerificationEmail()")
     inner class SendVerificationEmail {
-
         @Test
         @DisplayName("emits email_verification_sent = true on success")
         fun `emits email_verification_sent true on success`() {
@@ -443,7 +433,7 @@ class AuthenticationTest {
             verify {
                 mockPlugin.emitGodotSignal(
                     "auth_failure",
-                    "Failed to send verification email: Rate limit exceeded"
+                    "Failed to send verification email: Rate limit exceeded",
                 )
             }
         }
@@ -466,7 +456,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("sendPasswordResetEmail()")
     inner class SendPasswordResetEmail {
-
         @Test
         @DisplayName("emits password_reset_sent = true on success")
         fun `emits password_reset_sent true on success`() {
@@ -492,7 +481,7 @@ class AuthenticationTest {
             verify {
                 mockPlugin.emitGodotSignal(
                     "auth_failure",
-                    "Failed to send password reset email: Invalid email"
+                    "Failed to send password reset email: Invalid email",
                 )
             }
         }
@@ -505,7 +494,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("deleteCurrentUser()")
     inner class DeleteCurrentUser {
-
         @Test
         @DisplayName("emits user_deleted = true on success")
         fun `emits user_deleted true on success`() {
@@ -556,7 +544,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("linkAnonymousWithGoogle()")
     inner class LinkAnonymousWithGoogle {
-
         @Test
         @DisplayName("emits link_with_google_failure when no user is signed in")
         fun `emits link_failure when no user`() {
@@ -603,7 +590,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("signInWithGoogle()")
     inner class SignInWithGoogle {
-
         @Test
         @DisplayName("launches the Google sign-in intent")
         fun `launches sign-in intent`() {
@@ -624,7 +610,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("handleActivityResult()")
     inner class HandleActivityResult {
-
         @Test
         @DisplayName("ignores results for unrelated request codes")
         fun `ignores unrelated request code`() {
@@ -695,7 +680,6 @@ class AuthenticationTest {
     @Nested
     @DisplayName("authSignals()")
     inner class AuthSignals {
-
         @Test
         @DisplayName("returns eight signals")
         fun `returns 8 signals`() {
@@ -706,16 +690,17 @@ class AuthenticationTest {
         @DisplayName("includes all expected signal names")
         fun `includes all expected signal names`() {
             val names = authentication.authSignals().map { it.name }.toSet()
-            val expected = setOf(
-                "auth_success",
-                "auth_failure",
-                "link_with_google_success",
-                "link_with_google_failure",
-                "sign_out_success",
-                "password_reset_sent",
-                "email_verification_sent",
-                "user_deleted",
-            )
+            val expected =
+                setOf(
+                    "auth_success",
+                    "auth_failure",
+                    "link_with_google_success",
+                    "link_with_google_failure",
+                    "sign_out_success",
+                    "password_reset_sent",
+                    "email_verification_sent",
+                    "user_deleted",
+                )
             assertTrue(names.containsAll(expected)) {
                 "Missing signals: ${expected - names}"
             }

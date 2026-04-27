@@ -1,20 +1,20 @@
 //
 // © 2026-present Firebase Team https://github.com/firebase-team
 //
-
 package org.godotengine.plugin.firebase
 
 import android.app.Activity
 import android.content.Intent
 import android.view.View
-
 import org.godotengine.godot.Dictionary
 import org.godotengine.godot.Godot
 import org.godotengine.godot.plugin.GodotPlugin
 import org.godotengine.godot.plugin.SignalInfo
 import org.godotengine.godot.plugin.UsedByGodot
 
-class FirebasePlugin(godot: Godot) : GodotPlugin(godot) {
+class FirebasePlugin(
+    godot: Godot,
+) : GodotPlugin(godot) {
     override fun getPluginName(): String = FirebasePlugin::class.simpleName ?: ""
 
     private val auth = Authentication(this)
@@ -24,7 +24,11 @@ class FirebasePlugin(godot: Godot) : GodotPlugin(godot) {
                 return super.onMainCreate(activity)
     }
 
-    override fun onMainActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onMainActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+    ) {
         auth.handleActivityResult(requestCode, resultCode, data)
     }
 
@@ -34,7 +38,11 @@ class FirebasePlugin(godot: Godot) : GodotPlugin(godot) {
                 return signals
     }
 
-    fun emitGodotSignal(signalName: String, arg1: Any?, arg2: Any? = null) {
+    fun emitGodotSignal(
+        signalName: String,
+        arg1: Any?,
+        arg2: Any? = null,
+    ) {
         if (arg2 != null) {
             emitSignal(signalName, arg1, arg2)
         } else {
@@ -47,13 +55,19 @@ class FirebasePlugin(godot: Godot) : GodotPlugin(godot) {
      */
 
     @UsedByGodot
-            fun create_user(email: String, password: String) = auth.createUser(email, password)
+            fun create_user(
+        email: String,
+        password: String,
+    ) = auth.createUser(email, password)
 
     @UsedByGodot
             fun link_anonymous_with_google() = auth.linkAnonymousWithGoogle()
 
     @UsedByGodot
-            fun sign_in(email: String, password: String) = auth.signIn(email, password)
+            fun sign_in(
+        email: String,
+        password: String,
+    ) = auth.signIn(email, password)
 
     @UsedByGodot
             fun sign_in_with_google() = auth.signInWithGoogle()

@@ -1,7 +1,6 @@
 //
 // © 2026-present Firebase Team https://github.com/firebase-team
 //
-
 package org.godotengine.plugin.firebase.fixtures
 
 import android.app.Activity
@@ -32,7 +31,6 @@ import org.godotengine.plugin.firebase.model.GodotFirebaseUser
  * resolve the concrete listener type at the call site.
  */
 object Fixtures {
-
     // -------------------------------------------------------------------------
     // FirebaseUser
     // -------------------------------------------------------------------------
@@ -48,25 +46,26 @@ object Fixtures {
         photoUrl: Uri? = null,
         isEmailVerified: Boolean = true,
         isAnonymous: Boolean = false,
-    ): FirebaseUser = mockk<FirebaseUser>().also { user ->
-        every { user.uid } returns uid
-        every { user.displayName } returns displayName
-        every { user.email } returns email
-        every { user.photoUrl } returns photoUrl
-        every { user.isEmailVerified } returns isEmailVerified
-        every { user.isAnonymous } returns isAnonymous
-    }
+    ): FirebaseUser =
+        mockk<FirebaseUser>().also { user ->
+            every { user.uid } returns uid
+            every { user.displayName } returns displayName
+            every { user.email } returns email
+            every { user.photoUrl } returns photoUrl
+            every { user.isEmailVerified } returns isEmailVerified
+            every { user.isAnonymous } returns isAnonymous
+        }
 
     /**
      * Returns a mocked anonymous [FirebaseUser] (no email, no display name).
      */
     fun mockAnonymousFirebaseUser(uid: String = "uid-anon-456"): FirebaseUser =
-                mockFirebaseUser(
-                        uid = uid,
-                        displayName = null,
-                        email = null,
-                        isEmailVerified = false,
-                        isAnonymous = true,
+        mockFirebaseUser(
+            uid = uid,
+            displayName = null,
+            email = null,
+            isEmailVerified = false,
+            isAnonymous = true,
         )
 
     /**
@@ -100,12 +99,12 @@ object Fixtures {
         photoUrl: Uri? = null,
         isEmailVerified: Boolean = true,
         isAnonymous: Boolean = false,
-    ): GodotFirebaseUser = GodotFirebaseUser(
+    ): GodotFirebaseUser =
+        GodotFirebaseUser(
             mockFirebaseUser(uid, displayName, email, photoUrl, isEmailVerified, isAnonymous),
-    )
+        )
 
-    fun godotAnonymousUser(): GodotFirebaseUser =
-                GodotFirebaseUser(mockAnonymousFirebaseUser())
+    fun godotAnonymousUser(): GodotFirebaseUser = GodotFirebaseUser(mockAnonymousFirebaseUser())
 
     // -------------------------------------------------------------------------
     // AuthResult
@@ -117,7 +116,7 @@ object Fixtures {
      * user object is missing.
      */
     fun mockAuthResult(user: FirebaseUser? = null): AuthResult =
-                mockk<AuthResult>().also { every { it.user } returns user }
+        mockk<AuthResult>().also { every { it.user } returns user }
 
     // -------------------------------------------------------------------------
     // Task helpers
@@ -138,13 +137,13 @@ object Fixtures {
 
         every { task.addOnSuccessListener(any()) } answers {
             firstArg<OnSuccessListener<T>>().onSuccess(result)
-                task
+            task
         }
 
         // IMPORTANT: Return 'task' so subsequent chained listeners don't attach to a dummy mock
         every { task.addOnFailureListener(any()) } returns task
 
-                return task
+        return task
     }
 
     /**
@@ -160,13 +159,13 @@ object Fixtures {
 
         every { task.addOnFailureListener(any()) } answers {
             firstArg<OnFailureListener>().onFailure(exception)
-                task
+            task
         }
 
         // IMPORTANT: Return 'task' so subsequent chained listeners don't attach to a dummy mock
         every { task.addOnSuccessListener(any()) } returns task
 
-                return task
+        return task
     }
 
     /**
@@ -183,11 +182,11 @@ object Fixtures {
         // 1. Success Listeners (Trigger these)
         every { task.addOnSuccessListener(any<OnSuccessListener<T>>()) } answers {
             (firstArg() as OnSuccessListener<T>).onSuccess(result as T)
-                task
+            task
         }
         every { task.addOnSuccessListener(any<Activity>(), any<OnSuccessListener<T>>()) } answers {
             (secondArg() as OnSuccessListener<T>).onSuccess(result as T)
-                task
+            task
         }
 
         // 2. Failure Listeners (No-op, but MUST return task to continue chain)
@@ -197,14 +196,14 @@ object Fixtures {
         // 3. Complete Listeners (Trigger these)
         every { task.addOnCompleteListener(any<OnCompleteListener<T>>()) } answers {
             (firstArg() as OnCompleteListener<T>).onComplete(task)
-                task
+            task
         }
         every { task.addOnCompleteListener(any<Activity>(), any<OnCompleteListener<T>>()) } answers {
             (secondArg() as OnCompleteListener<T>).onComplete(task)
-                task
+            task
         }
 
-                return task
+        return task
     }
 
     /**
@@ -219,11 +218,11 @@ object Fixtures {
         // 1. Failure Listeners (Trigger these)
         every { task.addOnFailureListener(any<OnFailureListener>()) } answers {
             (firstArg() as OnFailureListener).onFailure(exception)
-                task
+            task
         }
         every { task.addOnFailureListener(any<Activity>(), any<OnFailureListener>()) } answers {
             (secondArg() as OnFailureListener).onFailure(exception)
-                task
+            task
         }
 
         // 2. Success Listeners (No-op, but MUST return task to continue chain)
@@ -233,13 +232,13 @@ object Fixtures {
         // 3. Complete Listeners (Trigger these)
         every { task.addOnCompleteListener(any<OnCompleteListener<T>>()) } answers {
             (firstArg() as OnCompleteListener<T>).onComplete(task)
-                task
+            task
         }
         every { task.addOnCompleteListener(any<Activity>(), any<OnCompleteListener<T>>()) } answers {
             (secondArg() as OnCompleteListener<T>).onComplete(task)
-                task
+            task
         }
 
-                return task
+        return task
     }
 }

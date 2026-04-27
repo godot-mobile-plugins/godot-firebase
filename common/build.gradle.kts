@@ -274,6 +274,7 @@ tasks {
         dependsOn(
             project(":addon").tasks.named("checkGdscriptFormat"),
             project(":android").tasks.named("checkJavaFormat"),
+            project(":android").tasks.named("checkKotlinFormat"),
             project(":android").tasks.named("checkXmlFormat"),
             project(":ios").tasks.named("checkObjCFormat"),
             project(":ios").tasks.named("checkSwiftFormat"),
@@ -289,6 +290,7 @@ tasks {
         dependsOn(
             project(":addon").tasks.named("formatGdscriptSource"),
             project(":android").tasks.named("rewriteRun"),
+            project(":android").tasks.named("formatKotlinSource"),
             project(":android").tasks.named("formatXml"),
             project(":ios").tasks.named("formatObjCSource"),
             project(":ios").tasks.named("formatSwiftSource"),
