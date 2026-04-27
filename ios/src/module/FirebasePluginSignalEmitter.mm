@@ -1,0 +1,85 @@
+//
+// © 2026-present Firebase Team https://github.com/firebase-team
+//
+
+#import "FirebasePluginSignalEmitter.h"
+
+#import "firebase_plugin.h"
+
+// ---------------------------------------------------------------------------
+
+@interface FirebasePluginSignalEmitter ()
+@property(nonatomic, assign) FirebasePlugin *plugin;
+@end
+
+// ---------------------------------------------------------------------------
+
+@implementation FirebasePluginSignalEmitter
+
+const String SIGNAL_AUTH_SUCCESS = "auth_success";
+const String SIGNAL_AUTH_FAILURE = "auth_failure";
+const String SIGNAL_LINK_SUCCESS = "link_with_google_success";
+const String SIGNAL_LINK_FAILURE = "link_with_google_failure";
+const String SIGNAL_SIGN_OUT_SUCCESS = "sign_out_success";
+const String SIGNAL_PASSWORD_RESET_SENT = "password_reset_sent";
+const String SIGNAL_EMAIL_VERIFICATION_SENT = "email_verification_sent";
+const String SIGNAL_USER_DELETED = "user_deleted";
+
+static const MethodInfo AUTH_SIGNALS[] = { MethodInfo(SIGNAL_AUTH_SUCCESS, PropertyInfo(Variant::DICTIONARY, "a_user")),
+	MethodInfo(SIGNAL_AUTH_FAILURE, PropertyInfo(Variant::STRING, "a_error")),
+	MethodInfo(SIGNAL_LINK_SUCCESS, PropertyInfo(Variant::DICTIONARY, "a_user")),
+	MethodInfo(SIGNAL_LINK_FAILURE, PropertyInfo(Variant::STRING, "a_error")),
+	MethodInfo(SIGNAL_SIGN_OUT_SUCCESS, PropertyInfo(Variant::BOOL, "a_success")),
+	MethodInfo(SIGNAL_PASSWORD_RESET_SENT, PropertyInfo(Variant::BOOL, "a_success")),
+	MethodInfo(SIGNAL_EMAIL_VERIFICATION_SENT, PropertyInfo(Variant::BOOL, "a_success")),
+	MethodInfo(SIGNAL_USER_DELETED, PropertyInfo(Variant::BOOL, "a_success")) };
+
+- (instancetype)initWithPlugin:(void *)plugin {
+	self = [super init];
+	if (self) {
+		_plugin = (FirebasePlugin *)plugin;
+	}
+	return self;
+}
+
+- (void)emitAuthSuccess:(GodotFirebaseUser *)user {
+	self.plugin->emit_signal(SIGNAL_AUTH_SUCCESS, *(Dictionary *)[user getRawData]);
+}
+
+- (void)emitAuthFailure:(NSString *)error {
+	self.plugin->emit_signal(SIGNAL_AUTH_FAILURE, String([error UTF8String]));
+}
+
+- (void)emitLinkSuccess:(GodotFirebaseUser *)user {
+	self.plugin->emit_signal(SIGNAL_LINK_SUCCESS, *(Dictionary *)[user getRawData]);
+}
+
+- (void)emitLinkFailure:(NSString *)error {
+	self.plugin->emit_signal(SIGNAL_LINK_FAILURE, String([error UTF8String]));
+}
+
+- (void)emitSignOutSuccess:(BOOL)success {
+	self.plugin->emit_signal(SIGNAL_SIGN_OUT_SUCCESS, (bool)success);
+}
+
+- (void)emitPasswordResetSent:(BOOL)success {
+	self.plugin->emit_signal(SIGNAL_PASSWORD_RESET_SENT, (bool)success);
+}
+
+- (void)emitEmailVerificationSent:(BOOL)success {
+	self.plugin->emit_signal(SIGNAL_EMAIL_VERIFICATION_SENT, (bool)success);
+}
+
+- (void)emitUserDeleted:(BOOL)success {
+	self.plugin->emit_signal(SIGNAL_USER_DELETED, (bool)success);
+}
+
++ (const MethodInfo *)getAuthSignals {
+	return AUTH_SIGNALS;
+}
+
++ (int)getAuthSignalsCount {
+	return sizeof(AUTH_SIGNALS) / sizeof(MethodInfo);
+}
+
+@end

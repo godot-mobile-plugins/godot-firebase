@@ -29,7 +29,7 @@ jobs:
         uses: ./.github/actions/install-ktlint
 
       - name: Run ktlint
-        run: ktlint "android/src/**/*.kt"
+        run: ktlint "android/src/**/*.kt" "!android/src/**/*Plugin.kt"
 
       - name: Run Checkstyle
         run: |

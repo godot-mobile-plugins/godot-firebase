@@ -23,26 +23,34 @@ kotlinx-serialization = "1.6.3"
 # -- Test dependencies ---------------------------------------------------------
 junit-jupiter = "6.0.3"
 mockito = "5.23.0"
+mockk = "1.13.17"
+opengl-api = "gl1.1-android-2.1_r1"
 
 # -- Godot plugin dependencies -------------------------------------------------
 appcompat = "1.7.1"
+firebase-auth = "24.0.1"
+play-services-auth = "21.5.1"
 
 [libraries]
 
 # -- Build tool ----------------------------------------------------------------
-rewrite-static-analysis = { module = "org.openrewrite.recipe:rewrite-static-analysis", version.ref = "rewrite-static-analysis" }
+style-rewrite-static-analysis = { module = "org.openrewrite.recipe:rewrite-static-analysis", version.ref = "rewrite-static-analysis" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 # -- Test libraries (aliases starting with "test-" are loaded as testImplementation) --
 test-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 test-mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 test-mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+test-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 # -- Runtime-only test libraries (aliases starting with "test-runtime-" -> testRuntimeOnly) --
 test-runtime-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-jupiter" }
+test-runtime-opengl-api = { module = "org.khronos:opengl-api", version.ref = "opengl-api" }
 
 # -- Godot plugin --------------------------------------------------------------
-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+plugin-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+plugin-firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase-auth" }
+plugin-play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "play-services-auth" }
 
 [plugins]
 

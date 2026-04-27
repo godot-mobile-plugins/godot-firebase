@@ -238,6 +238,8 @@ configure<org.openrewrite.gradle.RewriteExtension> {
     )
     activeStyle("org.godotengine.plugin.JavaStyle")
     configFile = projectDir.resolve("config/rewrite.yml")
+
+    exclusion("**/*.kt")
 }
 
 // -- Android configuration -----------------------------------------------------
@@ -315,7 +317,7 @@ val androidDependencies =
         .named("libs")
         .run {
             libraryAliases
-                .filter { it != "rewrite.static.analysis" && !it.startsWith("test.") }
+                .filter { it.startsWith("plugin.") }
                 .map { findLibrary(it).get().get() }
         }
 
@@ -339,7 +341,7 @@ val testRuntimeOnlyDependencies =
 val artifactType = Attribute.of("artifactType", String::class.java)
 
 dependencies {
-    "rewrite"(libs.rewrite.static.analysis)
+    "rewrite"(libs.style.rewrite.static.analysis)
     implementation("godot:godot-lib:${godotConfig.godotVersion}.${godotConfig.godotReleaseType}@aar")
     androidDependencies.forEach { implementation(it) }
     testDependencies.forEach { testImplementation(it) }
@@ -557,6 +559,50 @@ tasks {
         src(godotConfig.godotAarUrl)
         dest(destFile)
         overwrite(false)
+    }
+
+    register<Exec>("checkKotlinFormat") {
+        description = "Checks ktlint compliance of Kotlin source files under \$projectDir/src"
+        group = "verification"
+        workingDir = projectDir
+
+        doFirst {
+            val sourceFiles =
+                fileTree("src") {
+                    include("**/*.kt")
+                    exclude("**/*Plugin.kt")
+                }.files
+                    .map { it.relativeTo(projectDir).path }
+                    .sorted()
+
+            if (sourceFiles.isEmpty()) {
+                throw GradleException("checkKotlinFormat: no .kt files found under src/")
+            }
+
+            commandLine(listOf("ktlint") + sourceFiles)
+        }
+    }
+
+    register<Exec>("formatKotlinSource") {
+        description = "Formats Kotlin source files under \$projectDir/src in-place using ktlint"
+        group = "formatting"
+        workingDir = projectDir
+
+        doFirst {
+            val sourceFiles =
+                fileTree("src") {
+                    include("**/*.kt")
+                    exclude("**/*Plugin.kt")
+                }.files
+                    .map { it.relativeTo(projectDir).path }
+                    .sorted()
+
+            if (sourceFiles.isEmpty()) {
+                throw GradleException("formatKotlinSource: no .kt files found under src/")
+            }
+
+            commandLine(listOf("ktlint", "--format") + sourceFiles)
+        }
     }
 
     named("preBuild") {

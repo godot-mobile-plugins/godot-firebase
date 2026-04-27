@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.undercouch.download) apply false
     alias(libs.plugins.openrewrite) apply false
     alias(libs.plugins.node) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
 }
 
 // -- Load config data class ----------------------------------------------------
@@ -154,7 +153,7 @@ tasks {
             ).joinToString(" -o ") { "-name \"$it\"" }
 
         val excludePatterns =
-            listOf("node_modules", ".git", "build", ".gradle", ".idea", "bin", "release")
+            listOf("node_modules", ".git", "build", ".gradle", ".idea", "bin", "release", "framework")
                 .joinToString(" ") { "-not -path \"*/$it/*\"" }
 
         commandLine(
@@ -275,6 +274,7 @@ tasks {
         dependsOn(
             project(":addon").tasks.named("checkGdscriptFormat"),
             project(":android").tasks.named("checkJavaFormat"),
+            project(":android").tasks.named("checkKotlinFormat"),
             project(":android").tasks.named("checkXmlFormat"),
             project(":ios").tasks.named("checkObjCFormat"),
             project(":ios").tasks.named("checkSwiftFormat"),
@@ -290,6 +290,7 @@ tasks {
         dependsOn(
             project(":addon").tasks.named("formatGdscriptSource"),
             project(":android").tasks.named("rewriteRun"),
+            project(":android").tasks.named("formatKotlinSource"),
             project(":android").tasks.named("formatXml"),
             project(":ios").tasks.named("formatObjCSource"),
             project(":ios").tasks.named("formatSwiftSource"),
