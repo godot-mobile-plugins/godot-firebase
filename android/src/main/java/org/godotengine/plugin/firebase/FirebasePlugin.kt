@@ -21,7 +21,7 @@ class FirebasePlugin(
 
     override fun onMainCreate(activity: Activity?): View? {
         activity?.let { auth.init(it) }
-                return super.onMainCreate(activity)
+        return super.onMainCreate(activity)
     }
 
     override fun onMainActivityResult(
@@ -35,7 +35,7 @@ class FirebasePlugin(
     override fun getPluginSignals(): MutableSet<SignalInfo> {
         val signals: MutableSet<SignalInfo> = mutableSetOf()
         signals.addAll(auth.authSignals())
-                return signals
+        return signals
     }
 
     fun emitGodotSignal(
@@ -55,41 +55,41 @@ class FirebasePlugin(
      */
 
     @UsedByGodot
-            fun create_user(
+    fun create_user(
         email: String,
         password: String,
     ) = auth.createUser(email, password)
 
     @UsedByGodot
-            fun link_anonymous_with_google() = auth.linkAnonymousWithGoogle()
+    fun link_anonymous_with_google() = auth.linkAnonymousWithGoogle()
 
     @UsedByGodot
-            fun sign_in(
+    fun sign_in(
         email: String,
         password: String,
     ) = auth.signIn(email, password)
 
     @UsedByGodot
-            fun sign_in_with_google() = auth.signInWithGoogle()
+    fun sign_in_with_google() = auth.signInWithGoogle()
 
     @UsedByGodot
-            fun sign_in_anonymously() = auth.signInAnonymously()
+    fun sign_in_anonymously() = auth.signInAnonymously()
 
     @UsedByGodot
-            fun is_signed_in() = auth.isSignedIn()
+    fun is_signed_in() = auth.isSignedIn()
 
     @UsedByGodot
-            fun sign_out() = auth.signOut()
+    fun sign_out() = auth.signOut()
 
     @UsedByGodot
-            fun send_verification_email() = auth.sendVerificationEmail()
+    fun send_verification_email() = auth.sendVerificationEmail()
 
     @UsedByGodot
-            fun send_password_reset_email(email: String) = auth.sendPasswordResetEmail(email)
+    fun send_password_reset_email(email: String) = auth.sendPasswordResetEmail(email)
 
     @UsedByGodot
-            fun get_current_user() = auth.getCurrentUser()
+    fun get_current_user() = auth.getCurrentUser()
 
     @UsedByGodot
-            fun delete_current_user() = auth.deleteCurrentUser()
+    fun delete_current_user() = auth.deleteCurrentUser()
 }
