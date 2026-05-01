@@ -24,8 +24,12 @@ func _update_plugin() -> void:
 	if _plugin_singleton == null:
 		if Engine.has_singleton(PLUGIN_SINGLETON_NAME):
 			_plugin_singleton = Engine.get_singleton(PLUGIN_SINGLETON_NAME)
+			_connect_signals()
 		elif not Engine.is_editor_hint():
 			GmpLogger.log_error("%s singleton not found on this platform!" % PLUGIN_SINGLETON_NAME)
+
+
+@abstract func _connect_signals() -> void
 
 
 func _get_configuration_warnings() -> PackedStringArray:

@@ -3,7 +3,7 @@
 //
 
 // base-conventions - precompiled script plugin
-// (build-logic/src/main/kotlin/base-conventions.gradle.kts)
+// (build-logic/src/main/java/base-conventions.gradle.kts)
 //
 // This is the single entry point for all shared build configuration.
 // Applying id("base-conventions") in any project build script:

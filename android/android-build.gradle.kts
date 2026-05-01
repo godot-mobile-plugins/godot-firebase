@@ -238,8 +238,6 @@ configure<org.openrewrite.gradle.RewriteExtension> {
     )
     activeStyle("org.godotengine.plugin.JavaStyle")
     configFile = projectDir.resolve("config/rewrite.yml")
-
-    exclusion("**/*.kt")
 }
 
 // -- Android configuration -----------------------------------------------------
@@ -311,13 +309,13 @@ node {
 
 // -- Dependencies --------------------------------------------------------------
 
-val androidDependencies =
+val runtimeDependencies =
     extensions
         .getByType<VersionCatalogsExtension>()
         .named("libs")
         .run {
             libraryAliases
-                .filter { it.startsWith("plugin.") }
+                .filter { it.startsWith("runtime.") }
                 .map { findLibrary(it).get().get() }
         }
 
@@ -343,9 +341,24 @@ val artifactType = Attribute.of("artifactType", String::class.java)
 dependencies {
     "rewrite"(libs.style.rewrite.static.analysis)
     implementation("godot:godot-lib:${godotConfig.godotVersion}.${godotConfig.godotReleaseType}@aar")
-    androidDependencies.forEach { implementation(it) }
-    testDependencies.forEach { testImplementation(it) }
-    testRuntimeOnlyDependencies.forEach { testRuntimeOnly(it) }
+
+    println("DEBUG: Runtime Dependencies")
+    runtimeDependencies.forEach { 
+        println("DEBUG: Adding to runtime: $it")
+        implementation(it) 
+    }
+
+    println("DEBUG: Test Dependencies")
+    testDependencies.forEach { dependency ->
+        println("DEBUG: Adding to test: $dependency")
+        testImplementation(dependency)
+    }
+
+    println("DEBUG: Test Runtime Only Dependencies")
+    testRuntimeOnlyDependencies.forEach { 
+        println("DEBUG: Adding to testRuntimeOnly: $it")
+        testRuntimeOnly(it) 
+    }
 
     attributesSchema {
         attribute(artifactType) {
@@ -651,7 +664,7 @@ tasks.withType<Test> {
     ignoreFailures = true
 }
 
-// 🔥 Final fix: afterEvaluate guarantees the test task exists when we configure it
+// afterEvaluate guarantees the test task exists when configured
 afterEvaluate {
     tasks.named<Test>("testDebugUnitTest") {
         // This tells Gradle: coverage report MUST run AFTER the test task finishes

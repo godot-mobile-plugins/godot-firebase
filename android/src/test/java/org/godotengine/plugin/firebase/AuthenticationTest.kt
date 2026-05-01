@@ -616,7 +616,7 @@ class AuthenticationTest {
             authentication.handleActivityResult(
                 requestCode = 1234,
                 resultCode = Activity.RESULT_OK,
-                data = null,
+                intent = null,
             )
 
             verify(exactly = 0) { mockPlugin.emitGodotSignal(any(), any()) }
@@ -625,7 +625,7 @@ class AuthenticationTest {
         @Test
         @DisplayName("emits auth_failure when Google account task throws ApiException")
         fun `emits auth_failure on ApiException`() {
-            val data = mockk<Intent>()
+            val mockedIntent = mockk<Intent>()
 
             @Suppress("UNCHECKED_CAST")
             val failedTask = mockk<Task<GoogleSignInAccount>>()
@@ -633,12 +633,12 @@ class AuthenticationTest {
                 failedTask.getResult(ApiException::class.java)
             } throws ApiException(Status(7, "Network error"))
 
-            every { GoogleSignIn.getSignedInAccountFromIntent(data) } returns failedTask
+            every { GoogleSignIn.getSignedInAccountFromIntent(mockedIntent) } returns failedTask
 
             authentication.handleActivityResult(
                 requestCode = 9001,
                 resultCode = Activity.RESULT_OK,
-                data = data,
+                intent = mockedIntent,
             )
 
             verify { mockPlugin.emitGodotSignal("auth_failure", any()) }
@@ -654,19 +654,19 @@ class AuthenticationTest {
             every { mockActivity.startActivityForResult(any(), any()) } just Runs
             authentication.linkAnonymousWithGoogle() // sets isLinkingAnonymous = true
 
-            val data = mockk<Intent>()
+            val mockedIntent = mockk<Intent>()
 
             @Suppress("UNCHECKED_CAST")
             val failedTask = mockk<Task<GoogleSignInAccount>>()
             every {
                 failedTask.getResult(ApiException::class.java)
             } throws ApiException(Status(7, "Network error"))
-            every { GoogleSignIn.getSignedInAccountFromIntent(data) } returns failedTask
+            every { GoogleSignIn.getSignedInAccountFromIntent(mockedIntent) } returns failedTask
 
             authentication.handleActivityResult(
                 requestCode = 9001,
                 resultCode = Activity.RESULT_OK,
-                data = data,
+                intent = mockedIntent,
             )
 
             verify { mockPlugin.emitGodotSignal("link_with_google_failure", any()) }

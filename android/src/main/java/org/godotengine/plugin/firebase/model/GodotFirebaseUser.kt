@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseUser
 import org.godotengine.godot.Dictionary
 
 class GodotFirebaseUser(
-    private val data: Dictionary = Dictionary(),
+    private val rawData: Dictionary = Dictionary(),
 ) {
     companion object {
         const val USER_ID_PROPERTY = "user_id"
@@ -19,58 +19,58 @@ class GodotFirebaseUser(
     }
 
     constructor(user: FirebaseUser) : this() {
-        this.data[USER_ID_PROPERTY] = user.uid
-        this.data[NAME_PROPERTY] = user.displayName
-        this.data[EMAIL_PROPERTY] = user.email
-        this.data[PHOTO_URL_PROPERTY] = user.photoUrl?.toString()
-        this.data[IS_EMAIL_VERIFIED_PROPERTY] = user.isEmailVerified
-        this.data[IS_ANONYMOUS_PROPERTY] = user.isAnonymous
+        this.rawData[USER_ID_PROPERTY] = user.uid
+        this.rawData[NAME_PROPERTY] = user.displayName
+        this.rawData[EMAIL_PROPERTY] = user.email
+        this.rawData[PHOTO_URL_PROPERTY] = user.photoUrl?.toString()
+        this.rawData[IS_EMAIL_VERIFIED_PROPERTY] = user.isEmailVerified
+        this.rawData[IS_ANONYMOUS_PROPERTY] = user.isAnonymous
     }
 
     // User ID
     var userId: String
-        get() = data[USER_ID_PROPERTY] as? String ?: ""
+        get() = rawData[USER_ID_PROPERTY] as? String ?: ""
         set(value) {
-            data[USER_ID_PROPERTY] = value
+            rawData[USER_ID_PROPERTY] = value
         }
 
     // Name
     var name: String
-        get() = data[NAME_PROPERTY] as? String ?: ""
+        get() = rawData[NAME_PROPERTY] as? String ?: ""
         set(value) {
-            data[NAME_PROPERTY] = value
+            rawData[NAME_PROPERTY] = value
         }
 
     // Email
     var email: String
-        get() = data[EMAIL_PROPERTY] as? String ?: ""
+        get() = rawData[EMAIL_PROPERTY] as? String ?: ""
         set(value) {
-            data[EMAIL_PROPERTY] = value
+            rawData[EMAIL_PROPERTY] = value
         }
 
     // Photo URL
     var photoUrl: String
-        get() = data[PHOTO_URL_PROPERTY] as? String ?: ""
+        get() = rawData[PHOTO_URL_PROPERTY] as? String ?: ""
         set(value) {
-            data[PHOTO_URL_PROPERTY] = value
+            rawData[PHOTO_URL_PROPERTY] = value
         }
 
     // Is Email Verified
     var isEmailVerified: Boolean
-        get() = data[IS_EMAIL_VERIFIED_PROPERTY] as? Boolean ?: false
+        get() = rawData[IS_EMAIL_VERIFIED_PROPERTY] as? Boolean ?: false
         set(value) {
-            data[IS_EMAIL_VERIFIED_PROPERTY] = value
+            rawData[IS_EMAIL_VERIFIED_PROPERTY] = value
         }
 
     // Is Anonymous
     var isAnonymous: Boolean
-        get() = data[IS_ANONYMOUS_PROPERTY] as? Boolean ?: false
+        get() = rawData[IS_ANONYMOUS_PROPERTY] as? Boolean ?: false
         set(value) {
-            data[IS_ANONYMOUS_PROPERTY] = value
+            rawData[IS_ANONYMOUS_PROPERTY] = value
         }
 
     /**
      * Returns the underlying Dictionary containing the user data.
      */
-    fun getRawData(): Dictionary = data
+    fun getRawData(): Dictionary = rawData
 }

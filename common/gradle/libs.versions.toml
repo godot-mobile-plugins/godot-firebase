@@ -21,7 +21,7 @@ node-env = "22.0.0"
 kotlinx-serialization = "1.6.3"
 
 # -- Test dependencies ---------------------------------------------------------
-junit-jupiter = "6.0.3"
+junit-jupiter = "6.0.4"
 mockito = "5.23.0"
 mockk = "1.13.17"
 opengl-api = "gl1.1-android-2.1_r1"
@@ -29,13 +29,14 @@ opengl-api = "gl1.1-android-2.1_r1"
 # -- Godot plugin dependencies -------------------------------------------------
 appcompat = "1.7.1"
 firebase-auth = "24.0.1"
+firebase-firestore = "26.2.0"
 play-services-auth = "21.5.1"
 
 [libraries]
 
 # -- Build tool ----------------------------------------------------------------
 style-rewrite-static-analysis = { module = "org.openrewrite.recipe:rewrite-static-analysis", version.ref = "rewrite-static-analysis" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+build-logic-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 # -- Test libraries (aliases starting with "test-" are loaded as testImplementation) --
 test-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
@@ -48,9 +49,10 @@ test-runtime-junit-platform-launcher = { module = "org.junit.platform:junit-plat
 test-runtime-opengl-api = { module = "org.khronos:opengl-api", version.ref = "opengl-api" }
 
 # -- Godot plugin --------------------------------------------------------------
-plugin-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-plugin-firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase-auth" }
-plugin-play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "play-services-auth" }
+runtime-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+runtime-firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase-auth" }
+runtime-play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "play-services-auth" }
+runtime-firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebase-firestore" }
 
 [plugins]
 
