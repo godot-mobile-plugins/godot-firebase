@@ -183,6 +183,12 @@ fun TaskContainerScope.registerIosTestTask(
         }
 
         doFirst {
+            // Delete the existing result bundle to avoid xcodebuild errors
+            val resultBundle = testResultsDir.resolve("$name.xcresult")
+            if (resultBundle.exists()) {
+                resultBundle.deleteRecursively()
+            }
+            
             testResultsDir.mkdirs()
 
             // Try pulling from Gradle extra properties first (set by bootiOSSimulator), then fallback to env
@@ -214,7 +220,7 @@ fun TaskContainerScope.registerIosTestTask(
                 "-derivedDataPath",
                 derivedDataDir.absolutePath,
                 "-resultBundlePath",
-                testResultsDir.resolve("$name.xcresult").absolutePath,
+                resultBundle.absolutePath,
                 "-enableCodeCoverage",
                 "YES",
                 "GODOT_DIR=$godotDir",

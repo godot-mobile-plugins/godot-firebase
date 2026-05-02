@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0705CB392F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CB382F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift */; };
-		0721C6A22F82629000A9BA75 /* libfirebase_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CAAA9424E71FF10013969F /* libfirebase_plugin.a */; };
 		0721C6C12F82639B00A9BA75 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0721C6C02F82639B00A9BA75 /* XCTest.framework */; platformFilter = ios; };
+		0728F43B2FA59C3F00E11BFA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0728F43A2FA59C3F00E11BFA /* FirebaseAuth */; };
+		0728F43D2FA59C4600E11BFA /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0728F43C2FA59C4600E11BFA /* FirebaseCore */; };
+		0728F43F2FA59C4B00E11BFA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0728F43E2FA59C4B00E11BFA /* FirebaseFirestore */; };
+		0728F4412FA59C5200E11BFA /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 0728F4402FA59C5200E11BFA /* GoogleSignIn */; };
 		075063982F9DCA2600BD141D /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 366E34235EC876B649BEBBF1 /* FirebaseCore */; };
 		075063992F9DCA2600BD141D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8C62579FF4B40F50BA0448A6 /* FirebaseAuth */; };
 		075063A92F9DCA6900BD141D /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750639D2F9DCA6900BD141D /* Authentication.swift */; };
@@ -18,11 +21,27 @@
 		075063AC2F9DCA6900BD141D /* FirebasePluginSignalEmitter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0750639F2F9DCA6900BD141D /* FirebasePluginSignalEmitter.mm */; };
 		075063AD2F9DCA6900BD141D /* firebase_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 075063A42F9DCA6900BD141D /* firebase_plugin.mm */; };
 		075063AE2F9DCA6900BD141D /* firebase_plugin_bootstrap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 075063A62F9DCA6900BD141D /* firebase_plugin_bootstrap.mm */; };
+		078C028C2FA4EB3100A36E2F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B7F350BB320F23FF61F00B11 /* FirebaseFirestore */; };
+		07AD64212FA4A996007711D9 /* Firestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD64202FA4A996007711D9 /* Firestore.swift */; };
+		07AD64282FA4A9A8007711D9 /* FirestoreDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07AD64232FA4A9A8007711D9 /* FirestoreDocument.mm */; };
+		07AD64292FA4A9A8007711D9 /* FirestoreError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07AD64252FA4A9A8007711D9 /* FirestoreError.mm */; };
+		07AD642A2FA4A9A8007711D9 /* FirestoreResult.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07AD64272FA4A9A8007711D9 /* FirestoreResult.mm */; };
+		07CE00152FA594F000C5BF24 /* LiveFirestoreBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE00142FA594F000C5BF24 /* LiveFirestoreBackend.swift */; };
 		07DD23A92F9E491100AAA676 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 926CAD543C80A2757521E588 /* GoogleSignIn */; };
 		07DD23AB2F9E492F00AAA676 /* AuthenticationFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23AA2F9E492F00AAA676 /* AuthenticationFixtures.swift */; };
 		07DD23AE2F9E494100AAA676 /* GodotFirebaseUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23AD2F9E494100AAA676 /* GodotFirebaseUserTests.swift */; };
 		07DD23AF2F9E494100AAA676 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23AC2F9E494100AAA676 /* AuthenticationTests.swift */; };
 		07DD23B22F9E495C00AAA676 /* AuthProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23B12F9E495C00AAA676 /* AuthProviding.swift */; };
+		07E3DF902FA54AD2008A26D2 /* FirestoreFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3DF8F2FA54AD2008A26D2 /* FirestoreFixtures.swift */; };
+		07E3DF922FA54AF0008A26D2 /* FirestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3DF912FA54AF0008A26D2 /* FirestoreTests.swift */; };
+		07STUB0012FA000000000001 /* GodotTestStubs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07STUB0012FA000000000002 /* GodotTestStubs.mm */; };
+		07TEST0012FA000000000011 /* FirestoreDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07AD64232FA4A9A8007711D9 /* FirestoreDocument.mm */; };
+		07TEST0012FA000000000012 /* FirestoreError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07AD64252FA4A9A8007711D9 /* FirestoreError.mm */; };
+		07TEST0012FA000000000013 /* FirestoreResult.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07AD64272FA4A9A8007711D9 /* FirestoreResult.mm */; };
+		07TEST0012FA000000000014 /* GodotFirebaseUser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0750639B2F9DCA6900BD141D /* GodotFirebaseUser.mm */; };
+		07TEST0012FA000000000021 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750639D2F9DCA6900BD141D /* Authentication.swift */; };
+		07TEST0012FA000000000022 /* AuthProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DD23B12F9E495C00AAA676 /* AuthProviding.swift */; };
+		07TEST0012FA000000000023 /* Firestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD64202FA4A996007711D9 /* Firestore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,11 +82,28 @@
 		075063A52F9DCA6900BD141D /* firebase_plugin_bootstrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firebase_plugin_bootstrap.h; sourceTree = "<group>"; };
 		075063A62F9DCA6900BD141D /* firebase_plugin_bootstrap.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = firebase_plugin_bootstrap.mm; sourceTree = "<group>"; };
 		075063A72F9DCA6900BD141D /* firebase_plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "firebase_plugin-Bridging-Header.h"; sourceTree = "<group>"; };
+		077A5C1A2FA5A0B600FCB11D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		077A5C1C2FA5A0C100FCB11D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		078C028D2FA4EB4F00A36E2F /* FirestoreSignals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirestoreSignals.h; sourceTree = "<group>"; };
+		07AD64202FA4A996007711D9 /* Firestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firestore.swift; sourceTree = "<group>"; };
+		07AD64222FA4A9A8007711D9 /* FirestoreDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirestoreDocument.h; sourceTree = "<group>"; };
+		07AD64232FA4A9A8007711D9 /* FirestoreDocument.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FirestoreDocument.mm; sourceTree = "<group>"; };
+		07AD64242FA4A9A8007711D9 /* FirestoreError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirestoreError.h; sourceTree = "<group>"; };
+		07AD64252FA4A9A8007711D9 /* FirestoreError.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FirestoreError.mm; sourceTree = "<group>"; };
+		07AD64262FA4A9A8007711D9 /* FirestoreResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirestoreResult.h; sourceTree = "<group>"; };
+		07AD64272FA4A9A8007711D9 /* FirestoreResult.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FirestoreResult.mm; sourceTree = "<group>"; };
+		07C7656A2FA59FDA007FC761 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/iOSSupport/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
+		07C7656C2FA59FEE007FC761 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		07C7656E2FA59FF9007FC761 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		07CE00142FA594F000C5BF24 /* LiveFirestoreBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFirestoreBackend.swift; sourceTree = "<group>"; };
 		07DD23AA2F9E492F00AAA676 /* AuthenticationFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationFixtures.swift; sourceTree = "<group>"; };
 		07DD23AC2F9E494100AAA676 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
 		07DD23AD2F9E494100AAA676 /* GodotFirebaseUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodotFirebaseUserTests.swift; sourceTree = "<group>"; };
-		07DD23B02F9E495C00AAA676 /* AuthenticationEmitting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticationEmitting.h; sourceTree = "<group>"; };
+		07DD23B02F9E495C00AAA676 /* SignalEmitting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignalEmitting.h; sourceTree = "<group>"; };
 		07DD23B12F9E495C00AAA676 /* AuthProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviding.swift; sourceTree = "<group>"; };
+		07E3DF8F2FA54AD2008A26D2 /* FirestoreFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFixtures.swift; sourceTree = "<group>"; };
+		07E3DF912FA54AF0008A26D2 /* FirestoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTests.swift; sourceTree = "<group>"; };
+		07STUB0012FA000000000002 /* GodotTestStubs.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GodotTestStubs.mm; sourceTree = "<group>"; };
 		90CAAA9424E71FF10013969F /* libfirebase_plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfirebase_plugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -77,7 +113,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0721C6C12F82639B00A9BA75 /* XCTest.framework in Frameworks */,
-				0721C6A22F82629000A9BA75 /* libfirebase_plugin.a in Frameworks */,
+				0728F43B2FA59C3F00E11BFA /* FirebaseAuth in Frameworks */,
+				0728F43D2FA59C4600E11BFA /* FirebaseCore in Frameworks */,
+				0728F43F2FA59C4B00E11BFA /* FirebaseFirestore in Frameworks */,
+				0728F4412FA59C5200E11BFA /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078C028C2FA4EB3100A36E2F /* FirebaseFirestore in Frameworks */,
 				07DD23A92F9E491100AAA676 /* GoogleSignIn in Frameworks */,
 				075063992F9DCA2600BD141D /* FirebaseAuth in Frameworks */,
 				075063982F9DCA2600BD141D /* FirebaseCore in Frameworks */,
@@ -97,6 +137,8 @@
 		073E18652F835E0400D42B57 /* fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				07STUB0012FA000000000002 /* GodotTestStubs.mm */,
+				07E3DF8F2FA54AD2008A26D2 /* FirestoreFixtures.swift */,
 				07DD23AA2F9E492F00AAA676 /* AuthenticationFixtures.swift */,
 			);
 			path = fixtures;
@@ -105,6 +147,7 @@
 		073E186F2F835E0400D42B57 /* unit */ = {
 			isa = PBXGroup;
 			children = (
+				07E3DF912FA54AF0008A26D2 /* FirestoreTests.swift */,
 				0705CB382F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift */,
 				07DD23AC2F9E494100AAA676 /* AuthenticationTests.swift */,
 				07DD23AD2F9E494100AAA676 /* GodotFirebaseUserTests.swift */,
@@ -124,6 +167,12 @@
 		0750639C2F9DCA6900BD141D /* model */ = {
 			isa = PBXGroup;
 			children = (
+				07AD64222FA4A9A8007711D9 /* FirestoreDocument.h */,
+				07AD64232FA4A9A8007711D9 /* FirestoreDocument.mm */,
+				07AD64242FA4A9A8007711D9 /* FirestoreError.h */,
+				07AD64252FA4A9A8007711D9 /* FirestoreError.mm */,
+				07AD64262FA4A9A8007711D9 /* FirestoreResult.h */,
+				07AD64272FA4A9A8007711D9 /* FirestoreResult.mm */,
 				0750639A2F9DCA6900BD141D /* GodotFirebaseUser.h */,
 				0750639B2F9DCA6900BD141D /* GodotFirebaseUser.mm */,
 			);
@@ -133,7 +182,10 @@
 		075063A02F9DCA6900BD141D /* module */ = {
 			isa = PBXGroup;
 			children = (
-				07DD23B02F9E495C00AAA676 /* AuthenticationEmitting.h */,
+				07CE00142FA594F000C5BF24 /* LiveFirestoreBackend.swift */,
+				078C028D2FA4EB4F00A36E2F /* FirestoreSignals.h */,
+				07AD64202FA4A996007711D9 /* Firestore.swift */,
+				07DD23B02F9E495C00AAA676 /* SignalEmitting.h */,
 				07DD23B12F9E495C00AAA676 /* AuthProviding.swift */,
 				0750639D2F9DCA6900BD141D /* Authentication.swift */,
 				0750639E2F9DCA6900BD141D /* FirebasePluginSignalEmitter.h */,
@@ -180,6 +232,11 @@
 		90CAAAA824E72A8A0013969F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				077A5C1C2FA5A0C100FCB11D /* Foundation.framework */,
+				077A5C1A2FA5A0B600FCB11D /* UIKit.framework */,
+				07C7656E2FA59FF9007FC761 /* QuartzCore.framework */,
+				07C7656C2FA59FEE007FC761 /* CoreText.framework */,
+				07C7656A2FA59FDA007FC761 /* GameController.framework */,
 				0721C6C02F82639B00A9BA75 /* XCTest.framework */,
 			);
 			name = Frameworks;
@@ -202,6 +259,12 @@
 				0721C6A42F82629000A9BA75 /* PBXTargetDependency */,
 			);
 			name = firebase_plugin_tests;
+			packageProductDependencies = (
+				0728F43A2FA59C3F00E11BFA /* FirebaseAuth */,
+				0728F43C2FA59C4600E11BFA /* FirebaseCore */,
+				0728F43E2FA59C4B00E11BFA /* FirebaseFirestore */,
+				0728F4402FA59C5200E11BFA /* GoogleSignIn */,
+			);
 			productName = firebase_plugin_tests;
 			productReference = 0721C69E2F82629000A9BA75 /* firebase_plugin_tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -223,6 +286,7 @@
 				366E34235EC876B649BEBBF1 /* FirebaseCore */,
 				8C62579FF4B40F50BA0448A6 /* FirebaseAuth */,
 				926CAD543C80A2757521E588 /* GoogleSignIn */,
+				B7F350BB320F23FF61F00B11 /* FirebaseFirestore */,
 			);
 			productName = firebase_plugin;
 			productReference = 90CAAA9424E71FF10013969F /* libfirebase_plugin.a */;
@@ -287,6 +351,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07TEST0012FA000000000021 /* Authentication.swift in Sources */,
+				07TEST0012FA000000000022 /* AuthProviding.swift in Sources */,
+				07TEST0012FA000000000023 /* Firestore.swift in Sources */,
+				07TEST0012FA000000000011 /* FirestoreDocument.mm in Sources */,
+				07TEST0012FA000000000012 /* FirestoreError.mm in Sources */,
+				07TEST0012FA000000000013 /* FirestoreResult.mm in Sources */,
+				07TEST0012FA000000000014 /* GodotFirebaseUser.mm in Sources */,
+				07STUB0012FA000000000001 /* GodotTestStubs.mm in Sources */,
+				07E3DF902FA54AD2008A26D2 /* FirestoreFixtures.swift in Sources */,
+				07E3DF922FA54AF0008A26D2 /* FirestoreTests.swift in Sources */,
 				0705CB392F9E91A0002E9DCC /* GodotFirebaseUser+Testing.swift in Sources */,
 				07DD23AB2F9E492F00AAA676 /* AuthenticationFixtures.swift in Sources */,
 				07DD23AE2F9E494100AAA676 /* GodotFirebaseUserTests.swift in Sources */,
@@ -300,9 +374,14 @@
 			files = (
 				075063A92F9DCA6900BD141D /* Authentication.swift in Sources */,
 				075063AA2F9DCA6900BD141D /* firebase_logger.mm in Sources */,
+				07AD64282FA4A9A8007711D9 /* FirestoreDocument.mm in Sources */,
+				07AD64292FA4A9A8007711D9 /* FirestoreError.mm in Sources */,
+				07AD642A2FA4A9A8007711D9 /* FirestoreResult.mm in Sources */,
 				075063AB2F9DCA6900BD141D /* GodotFirebaseUser.mm in Sources */,
 				075063AC2F9DCA6900BD141D /* FirebasePluginSignalEmitter.mm in Sources */,
 				075063AD2F9DCA6900BD141D /* firebase_plugin.mm in Sources */,
+				07CE00152FA594F000C5BF24 /* LiveFirestoreBackend.swift in Sources */,
+				07AD64212FA4A996007711D9 /* Firestore.swift in Sources */,
 				075063AE2F9DCA6900BD141D /* firebase_plugin_bootstrap.mm in Sources */,
 				07DD23B22F9E495C00AAA676 /* AuthProviding.swift in Sources */,
 			);
@@ -403,6 +482,7 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"$(GODOT_DIR)/bin/libgodot.ios.template_debug.$(CURRENT_ARCH).simulator.a",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.godotengine.plugin.plugin-template-unit-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,6 +490,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/firebase_plugin-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.9;
@@ -492,6 +573,7 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"$(GODOT_DIR)/bin/libgodot.ios.template_debug.$(CURRENT_ARCH).simulator.a",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.godotengine.plugin.plugin-template-unit-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -499,6 +581,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/firebase_plugin-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -695,6 +778,7 @@
 				PRODUCT_MODULE_NAME = firebase_plugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = FIREBASE_PLUGIN_MODULE;
 				SWIFT_OBJC_BRIDGING_HEADER = "src/firebase_plugin-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "firebase_plugin-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -769,6 +853,7 @@
 				PRODUCT_MODULE_NAME = firebase_plugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = FIREBASE_PLUGIN_MODULE;
 				SWIFT_OBJC_BRIDGING_HEADER = "src/firebase_plugin-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "firebase_plugin-Swift.h";
 				SWIFT_VERSION = 5.9;
@@ -836,6 +921,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0728F43A2FA59C3F00E11BFA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01426E1A61F0D772A309305C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		0728F43C2FA59C4600E11BFA /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01426E1A61F0D772A309305C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		0728F43E2FA59C4B00E11BFA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01426E1A61F0D772A309305C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		0728F4402FA59C5200E11BFA /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 571F77AC579BD93B9C50FE84 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
 		366E34235EC876B649BEBBF1 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 01426E1A61F0D772A309305C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -850,6 +955,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 571F77AC579BD93B9C50FE84 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		B7F350BB320F23FF61F00B11 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01426E1A61F0D772A309305C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

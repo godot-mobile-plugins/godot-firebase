@@ -2,26 +2,23 @@
 // © 2026-present Firebase Team https://github.com/firebase-team
 //
 
+#ifndef SignalEmitting_h
+#define SignalEmitting_h
+
 #import <Foundation/Foundation.h>
 
-#import "SignalEmitting.h"
-#import "GodotFirebaseUser.h"
+@class GodotFirebaseUser;
+@class FirestoreDocument;
+@class FirestoreError;
+@class FirestoreResult;
 
+/// ObjC protocol that mirrors every signal-emission method on
+/// FirebasePluginSignalEmitter.  Authentication.swift and Firestore.swift
+/// depend only on this protocol, so tests can substitute lightweight mocks
+/// without needing a live FirebasePlugin Godot object.
 NS_ASSUME_NONNULL_BEGIN
 
-/// Concrete signal emitter that forwards every Firebase auth event to the
-/// Godot engine via FirebasePlugin::emit_signal.
-/// Conforms to SignalEmitting so Authentication.swift can hold only
-/// a protocol reference, enabling mock substitution in unit tests.
-///
-/// NOTE: getAuthSignals / getAuthSignalsCount return the Godot C++ MethodInfo
-/// type and are therefore declared only as a private class extension inside
-/// FirebasePluginSignalEmitter.mm, which is compiled as Objective-C++.
-/// They must never appear here because this header is pulled into the Swift
-/// bridging header, where C++ types are not available.
-@interface FirebasePluginSignalEmitter : NSObject <SignalEmitting>
-
-- (instancetype)initWithPlugin:(void *)plugin;
+@protocol SignalEmitting <NSObject>
 
 // Authentication signals
 - (void)emitAuthSuccess:(GodotFirebaseUser *)user;
@@ -49,3 +46,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif /* SignalEmitting_h */

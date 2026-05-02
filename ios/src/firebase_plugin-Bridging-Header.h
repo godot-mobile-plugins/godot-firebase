@@ -8,5 +8,8 @@
 // imported directly by firebase_plugin.mm, which is compiled as Objective-C++.
 // Pulling it into the bridging header would expose those C++ types to the
 // Swift compiler, which does not support them.
-#import "AuthenticationEmitting.h"
+#import "SignalEmitting.h"
 #import "GodotFirebaseUser.h"
+#import "FirestoreDocument.h"
+#import "FirestoreError.h"
+#import "FirestoreResult.h"

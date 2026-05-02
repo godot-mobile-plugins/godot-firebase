@@ -2,7 +2,7 @@
 	{
 		"url": "https://github.com/firebase/firebase-ios-sdk.git",
 		"version": "12.12.1",
-		"products": ["FirebaseCore", "FirebaseAuth"]
+		"products": ["FirebaseCore", "FirebaseAuth", "FirebaseFirestore"]
 	},
 	{
 		"url": "https://github.com/google/GoogleSignIn-iOS.git",
