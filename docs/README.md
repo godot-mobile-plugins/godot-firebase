@@ -15,13 +15,15 @@
 
 # <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="24"> Godot Firebase Plugin
 
-A Godot plugin that provides a unified GDScript interface for **Firebase** services on **Android** and **iOS**, with a modular node-based architecture that makes it easy to add and manage Firebase features directly in your scene tree.
+A Godot plugin that provides a unified GDScript interface for **Firebase** services on **Android** and **iOS**, with a modular node-based architecture that makes it easy to add and manage Firebase features directly in your scene tree. Supported services include **Firebase Authentication** and **Cloud Firestore**.
 
 **Key Features:**
 - **Firebase Authentication** — email/password, Google Sign-In, and anonymous sign-in
 - **User Management** — create accounts, sign in/out, delete users, send verification and password-reset emails
 - **Account Linking** — link anonymous accounts to Google credentials
-- **Modular Architecture** — each Firebase service is a self-contained child node of the `Firebase` root node (e.g. `FirebaseAuth`), making it easy to add only the modules you need
+- **Cloud Firestore** — add, set, get, update, and delete documents; query entire collections; and subscribe to real-time document change notifications
+- **Typed Firestore Results** — all Firestore responses are wrapped in `FirestoreDocument`, `FirestoreResult`, or `FirestoreError` objects rather than raw dictionaries
+- **Modular Architecture** — each Firebase service is a self-contained child node of the `Firebase` root node (e.g. `FirebaseAuth`, `Firestore`), making it easy to add only the modules you need
 - **Signal-Based API** — all async operations emit typed GDScript signals for clean, decoupled code
 - **Cross-Platform** — single GDScript interface for both Android and iOS native SDKs
 
@@ -78,13 +80,13 @@ Steps:
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="20"> Usage
 
-Add a `Firebase` node to your main scene (or an autoload global scene), then add a `FirebaseAuth` node as a child of `Firebase` to enable authentication features. Each Firebase module is a separate child node — only add the ones your project needs.
+Add a `Firebase` node to your main scene (or an autoload global scene), then add `FirebaseAuth` and/or `Firestore` nodes as children of `Firebase` to enable the services your project needs. Each Firebase module is a separate child node — only add the ones you use.
 
-- Connect to signals on the `FirebaseAuth` node before calling any methods
-- Call authentication methods directly on the `FirebaseAuth` node
-- Use the returned `FirebaseUser` object to access the signed-in user's profile data
+- Connect to signals on the module nodes before calling any methods
+- Call methods directly on the `FirebaseAuth` or `Firestore` node
+- Use the returned `FirebaseUser`, `FirestoreDocument`, and `FirestoreResult` objects to access data
 
-Example usage:
+### Authentication Example
 ```gdscript
 @onready var firebase: Firebase = $Firebase
 @onready var auth: FirebaseAuth = $Firebase/FirebaseAuth
@@ -111,6 +113,49 @@ func _on_sign_out_success(success: bool) -> void:
 	print("Signed out successfully: %s" % success)
 ```
 
+### Firestore Example
+```gdscript
+@onready var firestore: Firestore = $Firebase/Firestore
+
+func _ready() -> void:
+	firestore.document_written.connect(_on_document_written)
+	firestore.document_write_failed.connect(_on_document_write_failed)
+	firestore.document_query_completed.connect(_on_document_query_completed)
+	firestore.collection_query_completed.connect(_on_collection_query_completed)
+	firestore.document_changed.connect(_on_document_changed)
+
+	# Write a document
+	var doc := FirestoreDocument.new()
+	doc.set_collection("players").set_document_id("player_1").set_value("score", 9001)
+	firestore.set_document(doc)
+
+	# Read a document
+	firestore.get_document("players", "player_1")
+
+	# Query an entire collection
+	firestore.get_collection("players")
+
+	# Subscribe to real-time updates
+	firestore.track_document("players", "player_1")
+
+func _on_document_written(result: FirestoreDocument) -> void:
+	print("Written to %s / %s" % [result.get_collection(), result.get_document_id()])
+
+func _on_document_write_failed(error: FirestoreError) -> void:
+	print("Write failed: %s" % error.get_error())
+
+func _on_document_query_completed(result: FirestoreDocument) -> void:
+	print("Score: %s" % result.get_value("score"))
+
+func _on_collection_query_completed(result: FirestoreResult) -> void:
+	for doc_id in result.get_all_document_ids():
+		var doc: FirestoreDocument = result.get_document(doc_id)
+		print("%s -> score: %s" % [doc_id, doc.get_value("score")])
+
+func _on_document_changed(document: FirestoreDocument) -> void:
+	print("Live update for %s: score = %s" % [document.get_document_id(), document.get_value("score")])
+```
+
 <a name="signals"></a>
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="20"> Signals
@@ -127,6 +172,22 @@ func _on_sign_out_success(success: bool) -> void:
 | `password_reset_sent` | `success: bool` | Emitted after attempting to send a password-reset email, indicating whether it was sent successfully. |
 | `email_verification_sent` | `success: bool` | Emitted after attempting to send a verification email to the current user, indicating whether it was sent successfully. |
 | `user_deleted` | `success: bool` | Emitted after attempting to delete the current user's account, indicating whether the deletion succeeded. |
+
+### Firestore Signals
+
+| Signal | Parameters | Description |
+| :--- | :--- | :--- |
+| `document_written` | `document: FirestoreDocument` | Emitted when a document is successfully written (via `add_document`, `set_document`, or `set_document_with_merge`). Returns the written document. |
+| `document_write_failed` | `error: FirestoreError` | Emitted when a document write operation fails. |
+| `document_query_completed` | `document: FirestoreDocument` | Emitted when a `get_document` call succeeds. Returns the retrieved document. |
+| `document_query_failed` | `error: FirestoreError` | Emitted when a `get_document` call fails. |
+| `collection_query_completed` | `result: FirestoreResult` | Emitted when a `get_collection` call succeeds. Returns a `FirestoreResult` containing all documents in the collection. |
+| `collection_query_failed` | `error: FirestoreError` | Emitted when a `get_collection` call fails. |
+| `document_updated` | `document: FirestoreDocument` | Emitted when an `update_document` call succeeds. Returns the updated document. |
+| `document_update_failed` | `error: FirestoreError` | Emitted when an `update_document` call fails. |
+| `document_deleted` | `document: FirestoreDocument` | Emitted when a `delete_document` call succeeds. Returns the document that was deleted. |
+| `document_delete_failed` | `error: FirestoreError` | Emitted when a `delete_document` call fails. |
+| `document_changed` | `document: FirestoreDocument` | Emitted whenever a tracked document changes in Firestore (real-time listener). |
 
 <a name="methods"></a>
 
@@ -147,6 +208,19 @@ func _on_sign_out_success(success: bool) -> void:
 | `send_password_reset_email(email: String)` | `void` | Sends a password-reset email to the given address. Emits `password_reset_sent`. |
 | `send_verification_email()` | `void` | Sends an email-verification message to the current user's email address. Emits `email_verification_sent`. |
 | `delete_current_user()` | `void` | Permanently deletes the currently signed-in user's account. Emits `user_deleted`. |
+
+### Firestore Methods
+
+| Method | Returns | Description |
+| :--- | :---: | :--- |
+| `add_document(document: FirestoreDocument)` | `void` | Adds a new document to the specified collection, letting Firestore auto-generate its ID. Emits `document_written` or `document_write_failed`. |
+| `set_document(document: FirestoreDocument)` | `void` | Writes a document at the specified collection/document-ID path, overwriting any existing data. Emits `document_written` or `document_write_failed`. |
+| `set_document_with_merge(document: FirestoreDocument)` | `void` | Writes a document with merge enabled — existing fields not present in `document` are preserved. Emits `document_written` or `document_write_failed`. |
+| `get_document(collection: String, document_id: String)` | `void` | Fetches a single document by collection and ID. Emits `document_query_completed` or `document_query_failed`. |
+| `get_collection(collection: String)` | `void` | Fetches all documents in the specified collection. Emits `collection_query_completed` or `collection_query_failed`. |
+| `update_document(document: FirestoreDocument)` | `void` | Updates only the fields present in `document`, leaving all other fields unchanged. Emits `document_updated` or `document_update_failed`. |
+| `delete_document(collection: String, document_id: String)` | `void` | Deletes the document at the specified path. Emits `document_deleted` or `document_delete_failed`. |
+| `track_document(collection: String, document_id: String)` | `void` | Attaches a real-time listener to the specified document. Emits `document_changed` whenever the document is modified in Firestore. |
 
 <a name="classes"></a>
 
@@ -170,8 +244,48 @@ Extends `RefCounted`. Encapsulates the profile data of an authenticated Firebase
 | `get_is_anonymous()` | `bool` | Returns `true` if the user is signed in anonymously. |
 | `set_is_anonymous(a_is_anonymous: bool)` | `void` | Sets the anonymous flag. |
 
+---
+
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="16"> FirestoreDocument
+Extends `RefCounted`. Represents a single Firestore document — its collection path, document ID, and all of its field values. Used as the input to write operations and returned by read operations and real-time listeners. Setter methods return `self` to enable method chaining.
+
+| Method | Returns | Description |
+| :--- | :---: | :--- |
+| `get_collection()` | `String` | The Firestore collection this document belongs to. |
+| `set_collection(a_collection: String)` | `FirestoreDocument` | Sets the collection name. Returns `self` for chaining. |
+| `get_document_id()` | `String` | The document's unique ID within its collection. |
+| `set_document_id(a_document_id: String)` | `FirestoreDocument` | Sets the document ID. Returns `self` for chaining. |
+| `get_value(key: String)` | `Variant` | Returns the value stored under `key`, or `null` if the key does not exist. |
+| `set_value(key: String, value: Variant)` | `FirestoreDocument` | Stores `value` under `key` in the document's data map. Returns `self` for chaining. |
+| `get_data()` | `Dictionary` | Returns the full key/value data dictionary for this document. |
+| `set_data(a_data: Dictionary)` | `FirestoreDocument` | Replaces the document's data with the provided dictionary. Returns `self` for chaining. |
+
+---
+
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="16"> FirestoreResult
+Extends `RefCounted`. Wraps the response from a collection query (`get_collection`). Provides access to every document returned, either by iterating all IDs or by fetching a specific document by ID.
+
+| Method | Returns | Description |
+| :--- | :---: | :--- |
+| `get_all_document_ids()` | `Array[String]` | Returns an array of all document IDs in this result set. |
+| `get_document(document_id: String)` | `FirestoreDocument` | Returns the `FirestoreDocument` for the given ID, or `null` if not found. |
+| `get_documents()` | `Dictionary` | Returns the full dictionary of all documents, keyed by document ID. |
+| `set_documents(a_documents: Dictionary)` | `void` | Replaces the internal document map with the provided dictionary. |
+
+---
+
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="16"> FirestoreError
+Extends `RefCounted`. Carries error information emitted by any failed Firestore operation signal (e.g. `document_write_failed`, `document_query_failed`).
+
+| Method | Returns | Description |
+| :--- | :---: | :--- |
+| `get_error()` | `String` | A human-readable description of the error. |
+| `set_error(a_error: String)` | `void` | Sets the error message. |
+
+---
+
 ### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="16"> FirebaseModule
-Extends `Node`. Abstract base class for all Firebase feature module nodes (e.g. `FirebaseAuth`). Handles locating and caching the native plugin singleton, and automatically re-acquires it when the app resumes from the background. All module nodes must be direct children of a `Firebase` node — the editor will display a configuration warning if this requirement is not met.
+Extends `Node`. Abstract base class for all Firebase feature module nodes (e.g. `FirebaseAuth`, `Firestore`). Handles locating and caching the native plugin singleton, and automatically re-acquires it when the app resumes from the background. All module nodes must be direct children of a `Firebase` node — the editor will display a configuration warning if this requirement is not met.
 
 <a name="nodes"></a>
 
@@ -193,10 +307,12 @@ The root node for the entire plugin. Add this node to your main scene or an auto
 | Property | Type | Description |
 | :--- | :---: | :--- |
 | `auth` | `FirebaseAuth` | Reference to the `FirebaseAuth` child node, or `null` if none is present. Updated automatically as children are added or removed. |
+| `firestore` | `Firestore` | Reference to the `Firestore` child node, or `null` if none is present. Updated automatically as children are added or removed. |
 
 **Configuration warnings (shown in the Godot editor):**
 - Shown when no `FirebaseAuth` child node is present (authentication features will be unavailable).
 - Shown when more than one `FirebaseAuth` child node is detected (only one is supported at a time).
+- Shown when more than one `Firestore` child node is detected (only one is supported at a time).
 
 ---
 
@@ -205,15 +321,27 @@ The root node for the entire plugin. Add this node to your main scene or an auto
 
 Add this node as a direct child of `Firebase` to enable Firebase Authentication. It bridges GDScript signals and method calls to the underlying native Android/iOS Firebase Auth SDK via the plugin singleton.
 
-**Signals:** see [Signals](#signals) section above.
+**Signals:** see [Signals — FirebaseAuth](#signals) section above.
 
-**Methods:** see [Methods](#methods) section above.
+**Methods:** see [Methods — FirebaseAuth](#methods) section above.
+
+---
+
+### <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="16"> Firestore
+**Extends:** `FirebaseModule` → `Node`
+
+Add this node as a direct child of `Firebase` to enable Cloud Firestore. It bridges GDScript signals and method calls to the underlying native Android/iOS Firestore SDK via the plugin singleton.
+
+**Signals:** see [Signals — Firestore](#signals) section above.
+
+**Methods:** see [Methods — Firestore](#methods) section above.
 
 **Scene tree example:**
 ```
 Main (Node)
 └── Firebase (Firebase)
-    └── FirebaseAuth (FirebaseAuth)
+    ├── FirebaseAuth (FirebaseAuth)
+    └── Firestore (Firestore)
 ```
 
 <a name="platform-specific-notes"></a>
@@ -255,7 +383,7 @@ Main (Node)
 | <img src="https://raw.githubusercontent.com/godot-sdk-integrations/godot-admob/main/addon/src/main/icon.png" width="20"> | [Admob](https://github.com/godot-sdk-integrations/godot-admob) | ✅ | ✅ | <a href="https://github.com/godot-sdk-integrations/godot-admob/releases"><img src="https://img.shields.io/github/release-date/godot-sdk-integrations/godot-admob?label=%20" /><img src="https://img.shields.io/github/v/release/godot-sdk-integrations/godot-admob?label=%20" hspace="4" /></a> | <a href="#"><img src="https://img.shields.io/github/downloads/godot-sdk-integrations/godot-admob/latest/total?label=latest" /><img src="https://img.shields.io/github/downloads/godot-sdk-integrations/godot-admob/total?label=total" hspace="4" /></a> | <a href="https://github.com/godot-sdk-integrations/godot-admob/stargazers"><img src="https://img.shields.io/github/stars/godot-sdk-integrations/godot-admob?style=plastic&label=%20" /></a> |
 | <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-connection-state/main/addon/src/icon.png" width="20"> | [Connection State](https://github.com/godot-mobile-plugins/godot-connection-state) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-connection-state/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-connection-state?label=%20" /><img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-connection-state?label=%20" hspace="4" /></a> | <a href="#"><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-connection-state/latest/total?label=latest" /><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-connection-state/total?label=total" hspace="4" /></a> | <a href="https://github.com/godot-mobile-plugins/godot-connection-state/stargazers"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-connection-state?style=plastic&label=%20" /></a> |
 | <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="20"> | [Deeplink](https://github.com/godot-mobile-plugins/godot-deeplink) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-deeplink/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-deeplink?label=%20" /><img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-deeplink?label=%20" hspace="4" /></a> | <a href="#"><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-deeplink/latest/total?label=latest" /><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-deeplink/total?label=total" hspace="4" /></a> | <a href="https://github.com/godot-mobile-plugins/godot-deeplink/stargazers"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-deeplink?style=plastic&label=%20" /></a> |
-| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="20"> | [Firebase](https://github.com/godot-mobile-plugins/godot-firebase) | ✅ | ✅ | 🔜 <!-- <a href="https://github.com/godot-mobile-plugins/godot-firebase/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-firebase?label=%20" /><img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-firebase?label=%20" hspace="4" /></a> --> | - <!-- <a href="#"><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/latest/total?label=latest" /><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/total?label=total" hspace="4" /></a> --> | <a href="https://github.com/godot-mobile-plugins/godot-firebase/stargazers"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-firebase?style=plastic&label=%20" /></a> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="20"> | [Firebase](https://github.com/godot-mobile-plugins/godot-firebase) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-firebase/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-firebase?label=%20" /><img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-firebase?label=%20" hspace="4" /></a> | <a href="#"><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/latest/total?label=latest" /><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/total?label=total" hspace="4" /></a> | <a href="https://github.com/godot-mobile-plugins/godot-firebase/stargazers"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-firebase?style=plastic&label=%20" /></a> |
 | <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-inapp-review/main/addon/src/icon.png" width="20"> | [In-App Review](https://github.com/godot-mobile-plugins/godot-inapp-review) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-inapp-review/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-inapp-review?label=%20" /><img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-inapp-review?label=%20" hspace="4" /></a> | <a href="#"><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-inapp-review/latest/total?label=latest" /><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-inapp-review/total?label=total" hspace="4" /></a> | <a href="https://github.com/godot-mobile-plugins/godot-inapp-review/stargazers"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-inapp-review?style=plastic&label=%20" /></a> |
 | <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-native-camera/main/addon/src/main/icon.png" width="20"> | [Native Camera](https://github.com/godot-mobile-plugins/godot-native-camera) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-native-camera/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-native-camera?label=%20" /><img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-native-camera?label=%20" hspace="4" /></a> | <a href="#"><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-native-camera/latest/total?label=latest" /><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-native-camera/total?label=total" hspace="4" /></a> | <a href="https://github.com/godot-mobile-plugins/godot-native-camera/stargazers"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-native-camera?style=plastic&label=%20" /></a> |
 | <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-notification-scheduler/main/addon/src/icon.png" width="20"> | [Notification Scheduler](https://github.com/godot-mobile-plugins/godot-notification-scheduler) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-notification-scheduler/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-notification-scheduler?label=%20" /><img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-notification-scheduler?label=%20" hspace="4" /></a> | <a href="#"><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-notification-scheduler/latest/total?label=latest" /><img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-notification-scheduler/total?label=total" hspace="4" /></a> | <a href="https://github.com/godot-mobile-plugins/godot-notification-scheduler/stargazers"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-notification-scheduler?style=plastic&label=%20" /></a> |
