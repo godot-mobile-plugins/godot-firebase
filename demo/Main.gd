@@ -260,6 +260,7 @@ func _on_firestore_collection_query_completed(result: FirestoreResult) -> void:
 		_print_to_screen("Retrieved document: %s/%s"
 				% [__document.get_collection(), __document_id])
 
+
 func _on_firestore_collection_query_failed(error: FirestoreError) -> void:
 	_print_to_screen("Firestore collection query for %s failed:"
 			% [error.get_collection()])

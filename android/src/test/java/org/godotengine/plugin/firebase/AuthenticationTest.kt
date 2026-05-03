@@ -29,8 +29,7 @@ import org.godotengine.godot.Godot
 import org.godotengine.plugin.firebase.fixtures.Fixtures
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -177,19 +176,18 @@ class AuthenticationTest {
     @DisplayName("getCurrentUser()")
     inner class GetCurrentUser {
         @Test
-        @DisplayName("returns a GodotFirebaseUser wrapping the current FirebaseUser")
+        @DisplayName("returns a Dictionary containing the current user's data")
         fun `wraps current user`() {
             signInAs(Fixtures.mockFirebaseUser(uid = "curr-uid"))
             val godotUser = authentication.getCurrentUser()
-            assertNotNull(godotUser)
-            assertTrue(godotUser!!.userId == "curr-uid")
+            assertEquals("curr-uid", godotUser["user_id"])
         }
 
         @Test
-        @DisplayName("returns null when no user is signed in")
-        fun `returns null when signed out`() {
+        @DisplayName("returns an empty Dictionary when no user is signed in")
+        fun `returns empty dictionary when signed out`() {
             signOutState()
-            assertNull(authentication.getCurrentUser())
+            assertTrue(authentication.getCurrentUser().isEmpty())
         }
     }
 

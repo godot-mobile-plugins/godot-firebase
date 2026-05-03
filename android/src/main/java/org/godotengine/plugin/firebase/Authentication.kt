@@ -165,8 +165,13 @@ class Authentication(
 
     fun signInWithGoogle() {
         Log.d(TAG, "Signing in with Google.")
+        if (!::googleSignInClient.isInitialized) {
+            Log.e(TAG, "Google Sign-In not configured: googleSignInClient was never initialised.")
+            plugin.emitGodotSignal(SIGNAL_AUTH_FAILURE, "Google Sign-In not initialized.")
+            return
+        }
         try {
-            val signInIntent = googleSignInClient.signInIntent  // lazy init fires here
+            val signInIntent = googleSignInClient.signInIntent
             activity.startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
         } catch (e: IllegalArgumentException) {
             Log.e(TAG, "Google Sign-In config error: ${e.message}")

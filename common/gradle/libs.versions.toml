@@ -21,7 +21,7 @@ node-env = "22.0.0"
 kotlinx-serialization = "1.6.3"
 
 # -- Test dependencies ---------------------------------------------------------
-junit-jupiter = "6.0.4"
+junit-jupiter = "6.0.3"
 mockito = "5.23.0"
 mockk = "1.13.17"
 opengl-api = "gl1.1-android-2.1_r1"
