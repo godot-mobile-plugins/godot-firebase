@@ -64,10 +64,12 @@ class Authentication(
 
         val webClientId = activity.getString(resId)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(webClientId)
-            .requestEmail()
-            .build()
+        val gso =
+            GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(webClientId)
+                .requestEmail()
+                .build()
 
         googleSignInClient = GoogleSignIn.getClient(activity, gso)
     }

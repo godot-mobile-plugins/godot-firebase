@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FirestoreResult : NSObject
 
 - (instancetype)initWithCollection:(NSString *)collection
-                         documents:(nullable void *)documents NS_DESIGNATED_INITIALIZER;
+						 documents:(nullable void *)documents NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init;
 

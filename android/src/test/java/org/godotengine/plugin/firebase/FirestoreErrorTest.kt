@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("FirestoreError")
 class FirestoreErrorTest {
-
     // -------------------------------------------------------------------------
     // Default (no-arg) constructor
     // -------------------------------------------------------------------------

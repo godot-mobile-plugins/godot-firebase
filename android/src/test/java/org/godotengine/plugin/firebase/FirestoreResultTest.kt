@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("FirestoreResult")
 class FirestoreResultTest {
-
     // -------------------------------------------------------------------------
     // Default (no-arg) constructor
     // -------------------------------------------------------------------------
@@ -95,10 +94,11 @@ class FirestoreResultTest {
         @Test
         @DisplayName("indexes each document by its ID")
         fun `indexes documents by id`() {
-            val docs = listOf(
-                FirestoreFixtures.mockDocumentSnapshot(id = "a", data = mapOf("x" to 1)),
-                FirestoreFixtures.mockDocumentSnapshot(id = "b", data = mapOf("x" to 2)),
-            )
+            val docs =
+                listOf(
+                    FirestoreFixtures.mockDocumentSnapshot(id = "a", data = mapOf("x" to 1)),
+                    FirestoreFixtures.mockDocumentSnapshot(id = "b", data = mapOf("x" to 2)),
+                )
             val qs = FirestoreFixtures.mockQuerySnapshot(documents = docs)
             val result = FirestoreResult("scores", qs)
 
@@ -109,11 +109,12 @@ class FirestoreResultTest {
         @Test
         @DisplayName("stores documents count matching the snapshot")
         fun `documents count matches snapshot`() {
-            val docs = listOf(
-                FirestoreFixtures.mockDocumentSnapshot(id = "a"),
-                FirestoreFixtures.mockDocumentSnapshot(id = "b"),
-                FirestoreFixtures.mockDocumentSnapshot(id = "c"),
-            )
+            val docs =
+                listOf(
+                    FirestoreFixtures.mockDocumentSnapshot(id = "a"),
+                    FirestoreFixtures.mockDocumentSnapshot(id = "b"),
+                    FirestoreFixtures.mockDocumentSnapshot(id = "c"),
+                )
             val qs = FirestoreFixtures.mockQuerySnapshot(documents = docs)
             val result = FirestoreResult("scores", qs)
 
@@ -123,9 +124,10 @@ class FirestoreResultTest {
         @Test
         @DisplayName("each indexed value is a Dictionary (FirestoreDocument raw data)")
         fun `each document value is a Dictionary`() {
-            val docs = listOf(
-                FirestoreFixtures.mockDocumentSnapshot(id = "doc-1", data = mapOf("name" to "Alice")),
-            )
+            val docs =
+                listOf(
+                    FirestoreFixtures.mockDocumentSnapshot(id = "doc-1", data = mapOf("name" to "Alice")),
+                )
             val qs = FirestoreFixtures.mockQuerySnapshot(documents = docs)
             val result = FirestoreResult("players", qs)
 
@@ -136,13 +138,14 @@ class FirestoreResultTest {
         @Test
         @DisplayName("document collection path is stored inside each indexed entry")
         fun `document entry contains collection path`() {
-            val docs = listOf(
-                FirestoreFixtures.mockDocumentSnapshot(
-                    id = "doc-1",
-                    collectionPath = "players",
-                    data = mapOf("name" to "Bob"),
-                ),
-            )
+            val docs =
+                listOf(
+                    FirestoreFixtures.mockDocumentSnapshot(
+                        id = "doc-1",
+                        collectionPath = "players",
+                        data = mapOf("name" to "Bob"),
+                    ),
+                )
             val qs = FirestoreFixtures.mockQuerySnapshot(documents = docs)
             val result = FirestoreResult("players", qs)
 
@@ -153,12 +156,13 @@ class FirestoreResultTest {
         @Test
         @DisplayName("document data is stored inside each indexed entry")
         fun `document entry contains document data`() {
-            val docs = listOf(
-                FirestoreFixtures.mockDocumentSnapshot(
-                    id = "doc-1",
-                    data = mapOf("score" to 99),
-                ),
-            )
+            val docs =
+                listOf(
+                    FirestoreFixtures.mockDocumentSnapshot(
+                        id = "doc-1",
+                        data = mapOf("score" to 99),
+                    ),
+                )
             val qs = FirestoreFixtures.mockQuerySnapshot(documents = docs)
             val result = FirestoreResult("leaderboard", qs)
 
@@ -170,9 +174,10 @@ class FirestoreResultTest {
         @Test
         @DisplayName("each document entry has the correct document_id key")
         fun `document entry contains correct document_id`() {
-            val docs = listOf(
-                FirestoreFixtures.mockDocumentSnapshot(id = "user-42"),
-            )
+            val docs =
+                listOf(
+                    FirestoreFixtures.mockDocumentSnapshot(id = "user-42"),
+                )
             val qs = FirestoreFixtures.mockQuerySnapshot(documents = docs)
             val result = FirestoreResult("users", qs)
 

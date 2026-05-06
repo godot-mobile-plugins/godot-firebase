@@ -4,8 +4,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SignalEmitting.h"
 #import "GodotFirebaseUser.h"
+#import "SignalEmitting.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

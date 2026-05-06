@@ -31,7 +31,7 @@ dependencies {
     println("DEBUG: BUILD LOGIC IMPLEMENTATION Dependencies")
     buildLogicDependencies.forEach {
         println("DEBUG: Adding to runtime: $it")
-        implementation(it) 
+        implementation(it)
     }
 }
 

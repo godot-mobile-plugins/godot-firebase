@@ -48,7 +48,10 @@ func _process_discovered_child(child: Node) -> void:
 					)
 		else:
 			GmpLogger.log_error(
-				"Child node of type %s is a FirebaseModule but does not match any handled module types." % child.get_class()
+				(
+					"Child node of type %s is a FirebaseModule but does not match any handled module types."
+					% child.get_class()
+				)
 			)
 
 
@@ -63,14 +66,17 @@ func _on_child_exiting(child: Node) -> void:
 				)
 		elif child is Firestore:
 			if firestore == child:
-					firestore = null
+				firestore = null
 			else:
 				GmpLogger.log_warn(
 					"A Firestore node is exiting, but it does not match the currently tracked Firestore node."
 				)
 		else:
 			GmpLogger.log_error(
-				"Child node of type %s is a FirebaseModule but does not match any handled module types." % child.get_class()
+				(
+					"Child node of type %s is a FirebaseModule but does not match any handled module types."
+					% child.get_class()
+				)
 			)
 
 

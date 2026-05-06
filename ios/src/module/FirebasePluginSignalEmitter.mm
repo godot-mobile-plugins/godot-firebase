@@ -26,39 +26,36 @@
 
 @implementation FirebasePluginSignalEmitter
 
-const String SIGNAL_AUTH_SUCCESS            = "auth_success";
-const String SIGNAL_AUTH_FAILURE            = "auth_failure";
-const String SIGNAL_LINK_SUCCESS            = "link_with_google_success";
-const String SIGNAL_LINK_FAILURE            = "link_with_google_failure";
-const String SIGNAL_SIGN_OUT_SUCCESS        = "sign_out_success";
-const String SIGNAL_PASSWORD_RESET_SENT     = "password_reset_sent";
+const String SIGNAL_AUTH_SUCCESS = "auth_success";
+const String SIGNAL_AUTH_FAILURE = "auth_failure";
+const String SIGNAL_LINK_SUCCESS = "link_with_google_success";
+const String SIGNAL_LINK_FAILURE = "link_with_google_failure";
+const String SIGNAL_SIGN_OUT_SUCCESS = "sign_out_success";
+const String SIGNAL_PASSWORD_RESET_SENT = "password_reset_sent";
 const String SIGNAL_EMAIL_VERIFICATION_SENT = "email_verification_sent";
-const String SIGNAL_USER_DELETED            = "user_deleted";
+const String SIGNAL_USER_DELETED = "user_deleted";
 
-static const MethodInfo AUTH_SIGNALS[] = {
-	MethodInfo(SIGNAL_AUTH_SUCCESS,            PropertyInfo(Variant::DICTIONARY, "a_user")),
-	MethodInfo(SIGNAL_AUTH_FAILURE,            PropertyInfo(Variant::STRING,     "a_error")),
-	MethodInfo(SIGNAL_LINK_SUCCESS,            PropertyInfo(Variant::DICTIONARY, "a_user")),
-	MethodInfo(SIGNAL_LINK_FAILURE,            PropertyInfo(Variant::STRING,     "a_error")),
-	MethodInfo(SIGNAL_SIGN_OUT_SUCCESS,        PropertyInfo(Variant::BOOL,       "a_success")),
-	MethodInfo(SIGNAL_PASSWORD_RESET_SENT,     PropertyInfo(Variant::BOOL,       "a_success")),
-	MethodInfo(SIGNAL_EMAIL_VERIFICATION_SENT, PropertyInfo(Variant::BOOL,       "a_success")),
-	MethodInfo(SIGNAL_USER_DELETED,            PropertyInfo(Variant::BOOL,       "a_success"))
-};
+static const MethodInfo AUTH_SIGNALS[] = { MethodInfo(SIGNAL_AUTH_SUCCESS, PropertyInfo(Variant::DICTIONARY, "a_user")),
+	MethodInfo(SIGNAL_AUTH_FAILURE, PropertyInfo(Variant::STRING, "a_error")),
+	MethodInfo(SIGNAL_LINK_SUCCESS, PropertyInfo(Variant::DICTIONARY, "a_user")),
+	MethodInfo(SIGNAL_LINK_FAILURE, PropertyInfo(Variant::STRING, "a_error")),
+	MethodInfo(SIGNAL_SIGN_OUT_SUCCESS, PropertyInfo(Variant::BOOL, "a_success")),
+	MethodInfo(SIGNAL_PASSWORD_RESET_SENT, PropertyInfo(Variant::BOOL, "a_success")),
+	MethodInfo(SIGNAL_EMAIL_VERIFICATION_SENT, PropertyInfo(Variant::BOOL, "a_success")),
+	MethodInfo(SIGNAL_USER_DELETED, PropertyInfo(Variant::BOOL, "a_success")) };
 
-static const MethodInfo FIRESTORE_SIGNALS[] = {
-	MethodInfo(SIGNAL_DOCUMENT_WRITTEN,           PropertyInfo(Variant::DICTIONARY, "a_document")),
-	MethodInfo(SIGNAL_DOCUMENT_WRITE_FAILED,      PropertyInfo(Variant::DICTIONARY, "a_error")),
-	MethodInfo(SIGNAL_DOCUMENT_UPDATED,           PropertyInfo(Variant::DICTIONARY, "a_document")),
-	MethodInfo(SIGNAL_DOCUMENT_UPDATE_FAILED,     PropertyInfo(Variant::DICTIONARY, "a_error")),
-	MethodInfo(SIGNAL_DOCUMENT_DELETED,           PropertyInfo(Variant::DICTIONARY, "a_document")),
-	MethodInfo(SIGNAL_DOCUMENT_DELETE_FAILED,     PropertyInfo(Variant::DICTIONARY, "a_error")),
-	MethodInfo(SIGNAL_DOCUMENT_CHANGED,           PropertyInfo(Variant::DICTIONARY, "a_document")),
-	MethodInfo(SIGNAL_DOCUMENT_QUERY_COMPLETED,   PropertyInfo(Variant::DICTIONARY, "a_document")),
-	MethodInfo(SIGNAL_DOCUMENT_QUERY_FAILED,      PropertyInfo(Variant::DICTIONARY, "a_error")),
+static const MethodInfo FIRESTORE_SIGNALS[] = { MethodInfo(SIGNAL_DOCUMENT_WRITTEN,
+														PropertyInfo(Variant::DICTIONARY, "a_document")),
+	MethodInfo(SIGNAL_DOCUMENT_WRITE_FAILED, PropertyInfo(Variant::DICTIONARY, "a_error")),
+	MethodInfo(SIGNAL_DOCUMENT_UPDATED, PropertyInfo(Variant::DICTIONARY, "a_document")),
+	MethodInfo(SIGNAL_DOCUMENT_UPDATE_FAILED, PropertyInfo(Variant::DICTIONARY, "a_error")),
+	MethodInfo(SIGNAL_DOCUMENT_DELETED, PropertyInfo(Variant::DICTIONARY, "a_document")),
+	MethodInfo(SIGNAL_DOCUMENT_DELETE_FAILED, PropertyInfo(Variant::DICTIONARY, "a_error")),
+	MethodInfo(SIGNAL_DOCUMENT_CHANGED, PropertyInfo(Variant::DICTIONARY, "a_document")),
+	MethodInfo(SIGNAL_DOCUMENT_QUERY_COMPLETED, PropertyInfo(Variant::DICTIONARY, "a_document")),
+	MethodInfo(SIGNAL_DOCUMENT_QUERY_FAILED, PropertyInfo(Variant::DICTIONARY, "a_error")),
 	MethodInfo(SIGNAL_COLLECTION_QUERY_COMPLETED, PropertyInfo(Variant::DICTIONARY, "a_result")),
-	MethodInfo(SIGNAL_COLLECTION_QUERY_FAILED,    PropertyInfo(Variant::DICTIONARY, "a_error"))
-};
+	MethodInfo(SIGNAL_COLLECTION_QUERY_FAILED, PropertyInfo(Variant::DICTIONARY, "a_error")) };
 
 - (instancetype)initWithPlugin:(void *)plugin {
 	self = [super init];

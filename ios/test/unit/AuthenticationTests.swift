@@ -575,7 +575,7 @@ private final class MockAuthSettingUserOnSignIn: AuthProviding {
 	) { completion?(nil, nil) }
 
 	func signIn(with: AuthCredential,
-				completion: ((AuthDataResult?, Error?) -> Void)?) { completion?(nil, nil) }
+		completion: ((AuthDataResult?, Error?) -> Void)?) { completion?(nil, nil) }
 
 	func signOut() throws {}
 

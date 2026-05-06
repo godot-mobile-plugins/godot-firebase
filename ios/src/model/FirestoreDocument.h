@@ -10,8 +10,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Designated initialiser — builds the model from raw field values.
 - (instancetype)initWithCollection:(NSString *)collection
-                        documentId:(NSString *)documentId
-                      documentData:(nullable void *)documentData NS_DESIGNATED_INITIALIZER;
+						documentId:(NSString *)documentId
+					  documentData:(nullable void *)documentData NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init;
 

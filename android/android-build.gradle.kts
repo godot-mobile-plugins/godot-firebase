@@ -343,9 +343,9 @@ dependencies {
     implementation("godot:godot-lib:${godotConfig.godotVersion}.${godotConfig.godotReleaseType}@aar")
 
     println("DEBUG: Runtime Dependencies")
-    runtimeDependencies.forEach { 
+    runtimeDependencies.forEach {
         println("DEBUG: Adding to runtime: $it")
-        implementation(it) 
+        implementation(it)
     }
 
     println("DEBUG: Test Dependencies")
@@ -355,9 +355,9 @@ dependencies {
     }
 
     println("DEBUG: Test Runtime Only Dependencies")
-    testRuntimeOnlyDependencies.forEach { 
+    testRuntimeOnlyDependencies.forEach {
         println("DEBUG: Adding to testRuntimeOnly: $it")
-        testRuntimeOnly(it) 
+        testRuntimeOnly(it)
     }
 
     attributesSchema {

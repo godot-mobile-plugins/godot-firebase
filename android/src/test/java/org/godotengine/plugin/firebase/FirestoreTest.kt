@@ -13,12 +13,12 @@ import com.google.firebase.firestore.SetOptions
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkStatic
 import io.mockk.slot
 import io.mockk.unmockkAll
 import io.mockk.verify
-import io.mockk.mockkStatic
-import org.godotengine.plugin.firebase.fixtures.Fixtures
 import org.godotengine.plugin.firebase.fixtures.FirestoreFixtures
+import org.godotengine.plugin.firebase.fixtures.Fixtures
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -46,7 +46,6 @@ import org.junit.jupiter.api.Test
  */
 @DisplayName("Firestore")
 class FirestoreTest {
-
     // -------------------------------------------------------------------------
     // Shared mocks
     // -------------------------------------------------------------------------
@@ -112,19 +111,20 @@ class FirestoreTest {
         @DisplayName("includes all expected signal names")
         fun `includes all expected signal names`() {
             val names = firestoreUnderTest.firestoreSignals().map { it.name }.toSet()
-            val expected = setOf(
-                "document_written",
-                "document_write_failed",
-                "document_query_completed",
-                "document_query_failed",
-                "document_updated",
-                "document_update_failed",
-                "document_deleted",
-                "document_delete_failed",
-                "document_changed",
-                "collection_query_completed",
-                "collection_query_failed",
-            )
+            val expected =
+                setOf(
+                    "document_written",
+                    "document_write_failed",
+                    "document_query_completed",
+                    "document_query_failed",
+                    "document_updated",
+                    "document_update_failed",
+                    "document_deleted",
+                    "document_delete_failed",
+                    "document_changed",
+                    "collection_query_completed",
+                    "collection_query_failed",
+                )
             assertTrue(names.containsAll(expected)) {
                 "Missing signals: ${expected - names}"
             }
@@ -401,11 +401,12 @@ class FirestoreTest {
         @Test
         @DisplayName("emits collection_query_completed with all documents from the snapshot")
         fun `includes all documents from query snapshot`() {
-            val docs = listOf(
-                FirestoreFixtures.mockDocumentSnapshot(id = "a"),
-                FirestoreFixtures.mockDocumentSnapshot(id = "b"),
-                FirestoreFixtures.mockDocumentSnapshot(id = "c"),
-            )
+            val docs =
+                listOf(
+                    FirestoreFixtures.mockDocumentSnapshot(id = "a"),
+                    FirestoreFixtures.mockDocumentSnapshot(id = "b"),
+                    FirestoreFixtures.mockDocumentSnapshot(id = "c"),
+                )
             every { mockCollection.get() } returns Fixtures.successTask(FirestoreFixtures.mockQuerySnapshot(docs))
 
             firestoreUnderTest.getCollection("test-collection")
@@ -495,10 +496,11 @@ class FirestoreTest {
         fun `targets correct collection and document`() {
             every { mockDocRef.update(any<Map<String, Any?>>()) } returns Fixtures.successTask<Void?>(null)
 
-            val document = FirestoreFixtures.firestoreDocumentWithData(
-                collection = "scores",
-                documentId = "score-999",
-            )
+            val document =
+                FirestoreFixtures.firestoreDocumentWithData(
+                    collection = "scores",
+                    documentId = "score-999",
+                )
             firestoreUnderTest.updateDocument(document)
 
             verify { mockFirestoreInstance.collection("scores") }
@@ -576,11 +578,12 @@ class FirestoreTest {
             firestoreUnderTest.trackDocument("test-collection", "doc-123")
 
             // Fire the captured listener with an existing snapshot
-            val snapshot = FirestoreFixtures.mockDocumentSnapshot(
-                id = "doc-123",
-                collectionPath = "test-collection",
-                exists = true,
-            )
+            val snapshot =
+                FirestoreFixtures.mockDocumentSnapshot(
+                    id = "doc-123",
+                    collectionPath = "test-collection",
+                    exists = true,
+                )
             listenerSlot.captured.onEvent(snapshot, null)
 
             verify { mockPlugin.emitGodotSignal("document_changed", any()) }
@@ -621,13 +624,19 @@ class FirestoreTest {
         @DisplayName("adds a snapshot listener to the correct document path")
         fun `registers listener on correct document path`() {
             val mockReg = FirestoreFixtures.mockListenerRegistration()
-            every { mockDocRef.addSnapshotListener(any<EventListener<com.google.firebase.firestore.DocumentSnapshot>>()) } returns mockReg
+            every {
+                mockDocRef.addSnapshotListener(any<EventListener<com.google.firebase.firestore.DocumentSnapshot>>())
+            } returns mockReg
 
             firestoreUnderTest.trackDocument("users", "user-007")
 
             // The document path "users/user-007" is resolved via firestore.document()
             verify { mockFirestoreInstance.document("users/user-007") }
-            verify { mockDocRef.addSnapshotListener(any<EventListener<com.google.firebase.firestore.DocumentSnapshot>>()) }
+            verify {
+                mockDocRef.addSnapshotListener(
+                    any<EventListener<com.google.firebase.firestore.DocumentSnapshot>>(),
+                )
+            }
         }
 
         @Test

@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("FirestoreDocument")
 class FirestoreDocumentTest {
-
     // -------------------------------------------------------------------------
     // Default (no-arg) constructor
     // -------------------------------------------------------------------------
@@ -101,10 +100,11 @@ class FirestoreDocumentTest {
         @Test
         @DisplayName("maps snapshot collection path to collection")
         fun `maps snapshot collection path`() {
-            val snapshot = FirestoreFixtures.mockDocumentSnapshot(
-                collectionPath = "orders",
-                id = "order-1",
-            )
+            val snapshot =
+                FirestoreFixtures.mockDocumentSnapshot(
+                    collectionPath = "orders",
+                    id = "order-1",
+                )
             val doc = FirestoreDocument(snapshot)
             assertEquals("orders", doc.collection)
         }
@@ -119,9 +119,10 @@ class FirestoreDocumentTest {
         @Test
         @DisplayName("populates documentData from snapshot data map")
         fun `populates documentData from snapshot`() {
-            val snapshot = FirestoreFixtures.mockDocumentSnapshot(
-                data = mapOf("name" to "Alice", "score" to 99),
-            )
+            val snapshot =
+                FirestoreFixtures.mockDocumentSnapshot(
+                    data = mapOf("name" to "Alice", "score" to 99),
+                )
             val doc = FirestoreDocument(snapshot)
             assertEquals("Alice", doc.documentData["name"])
             assertEquals(99, doc.documentData["score"])
@@ -130,9 +131,10 @@ class FirestoreDocumentTest {
         @Test
         @DisplayName("produces an empty documentData Dictionary when snapshot data is null")
         fun `empty documentData when snapshot data is null`() {
-            val snapshot = FirestoreFixtures.mockDocumentSnapshot(
-                exists = false,
-            )
+            val snapshot =
+                FirestoreFixtures.mockDocumentSnapshot(
+                    exists = false,
+                )
             // snapshot.data returns null when document does not exist
             val doc = FirestoreDocument(snapshot)
             // The constructor iterates over null-safe, so dict stays empty

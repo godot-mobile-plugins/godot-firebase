@@ -27,7 +27,6 @@ private:
 	static void _bind_methods();
 
 public:
-
 	// Authentication methods
 	void create_user(String email, String password);
 	void link_anonymous_with_google();
@@ -40,7 +39,6 @@ public:
 	void send_password_reset_email(String email);
 	Dictionary get_current_user() const;
 	void delete_current_user();
-
 
 	// Firestore methods
 	void add_document(Dictionary document);

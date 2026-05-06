@@ -11,8 +11,8 @@
 // Data key constants
 // ---------------------------------------------------------------------------
 
-static const String GFBCollectionProperty  = "collection";
-static const String GFBDocumentsProperty   = "documents";
+static const String GFBCollectionProperty = "collection";
+static const String GFBDocumentsProperty = "documents";
 
 // ---------------------------------------------------------------------------
 // Variant ← NSObject conversion (file-scope only)
@@ -21,35 +21,42 @@ static const String GFBDocumentsProperty   = "documents";
 // ---------------------------------------------------------------------------
 
 static Variant NSObjectToVariant(id obj) {
-    if (!obj || obj == [NSNull null]) return Variant();
+	if (!obj || obj == [NSNull null]) {
+		return Variant();
+	}
 
-    if ([obj isKindOfClass:[NSString class]]) {
-        return String([(NSString *)obj UTF8String]);
-    }
+	if ([obj isKindOfClass:[NSString class]]) {
+		return String([(NSString *)obj UTF8String]);
+	}
 
-    if ([obj isKindOfClass:[NSNumber class]]) {
-        NSNumber *n = (NSNumber *)obj;
-        if (strcmp([n objCType], @encode(BOOL)) == 0) return (bool)[n boolValue];
-        if (strcmp([n objCType], @encode(double)) == 0 ||
-            strcmp([n objCType], @encode(float))  == 0) return (double)[n doubleValue];
-        return (int64_t)[n longLongValue];
-    }
+	if ([obj isKindOfClass:[NSNumber class]]) {
+		NSNumber *n = (NSNumber *)obj;
+		if (strcmp([n objCType], @encode(BOOL)) == 0) {
+			return (bool)[n boolValue];
+		}
+		if (strcmp([n objCType], @encode(double)) == 0 || strcmp([n objCType], @encode(float)) == 0) {
+			return (double)[n doubleValue];
+		}
+		return (int64_t)[n longLongValue];
+	}
 
-    if ([obj isKindOfClass:[NSDictionary class]]) {
-        Dictionary dict;
-        for (NSString *key in (NSDictionary *)obj) {
-            dict[String([key UTF8String])] = NSObjectToVariant([(NSDictionary *)obj objectForKey:key]);
-        }
-        return dict;
-    }
+	if ([obj isKindOfClass:[NSDictionary class]]) {
+		Dictionary dict;
+		for (NSString *key in (NSDictionary *)obj) {
+			dict[String([key UTF8String])] = NSObjectToVariant([(NSDictionary *)obj objectForKey:key]);
+		}
+		return dict;
+	}
 
-    if ([obj isKindOfClass:[NSArray class]]) {
-        Array arr;
-        for (id item in (NSArray *)obj) arr.append(NSObjectToVariant(item));
-        return arr;
-    }
+	if ([obj isKindOfClass:[NSArray class]]) {
+		Array arr;
+		for (id item in (NSArray *)obj) {
+			arr.append(NSObjectToVariant(item));
+		}
+		return arr;
+	}
 
-    return Variant();
+	return Variant();
 }
 
 // ---------------------------------------------------------------------------
@@ -60,21 +67,20 @@ static Variant NSObjectToVariant(id obj) {
 
 @implementation FirestoreResult
 
-- (instancetype)initWithCollection:(NSString *)collection
-                         documents:(nullable void *)documents {
-    self = [super init];
-    if (self) {
-        _data = Dictionary();
-        self.collection = collection;
-        if (documents != nullptr) {
-            _data[GFBDocumentsProperty] = *(Dictionary *)documents;
-        }
-    }
-    return self;
+- (instancetype)initWithCollection:(NSString *)collection documents:(nullable void *)documents {
+	self = [super init];
+	if (self) {
+		_data = Dictionary();
+		self.collection = collection;
+		if (documents != nullptr) {
+			_data[GFBDocumentsProperty] = *(Dictionary *)documents;
+		}
+	}
+	return self;
 }
 
 - (instancetype)init {
-    return [self initWithCollection:@"" documents:nullptr];
+	return [self initWithCollection:@"" documents:nullptr];
 }
 
 // ---------------------------------------------------------------------------
@@ -82,32 +88,32 @@ static Variant NSObjectToVariant(id obj) {
 // ---------------------------------------------------------------------------
 
 - (NSString *)collection {
-    return _data.has(GFBCollectionProperty)
-        ? [NSString stringWithUTF8String:((String)_data[GFBCollectionProperty]).utf8().get_data()]
-        : @"";
+	return _data.has(GFBCollectionProperty)
+			? [NSString stringWithUTF8String:((String)_data[GFBCollectionProperty]).utf8().get_data()]
+			: @"";
 }
 
 - (void)setCollection:(NSString *)collection {
-    if (collection != nil) {
-        _data[GFBCollectionProperty] = String([collection UTF8String]);
-    }
+	if (collection != nil) {
+		_data[GFBCollectionProperty] = String([collection UTF8String]);
+	}
 }
 
 - (void *)documents {
-    if (!_data.has(GFBDocumentsProperty)) {
-        _data[GFBDocumentsProperty] = Dictionary();
-    }
-    return (void *)&_data[GFBDocumentsProperty];
+	if (!_data.has(GFBDocumentsProperty)) {
+		_data[GFBDocumentsProperty] = Dictionary();
+	}
+	return (void *)&_data[GFBDocumentsProperty];
 }
 
 - (void)setDocuments:(void *)documents {
-    if (documents != nullptr) {
-        _data[GFBDocumentsProperty] = *(Dictionary *)documents;
-    }
+	if (documents != nullptr) {
+		_data[GFBDocumentsProperty] = *(Dictionary *)documents;
+	}
 }
 
 - (void *)getRawData {
-    return (void *)&_data;
+	return (void *)&_data;
 }
 
 // ---------------------------------------------------------------------------
@@ -115,9 +121,9 @@ static Variant NSObjectToVariant(id obj) {
 // ---------------------------------------------------------------------------
 
 - (void)populateDocuments:(NSDictionary<NSString *, id> *)dictionary {
-    if (dictionary != nil) {
-        _data[GFBDocumentsProperty] = NSObjectToVariant(dictionary);
-    }
+	if (dictionary != nil) {
+		_data[GFBDocumentsProperty] = NSObjectToVariant(dictionary);
+	}
 }
 
 @end

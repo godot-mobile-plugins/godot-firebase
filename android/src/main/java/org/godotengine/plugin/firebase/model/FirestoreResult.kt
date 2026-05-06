@@ -5,7 +5,6 @@ package org.godotengine.plugin.firebase.model
 
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
-
 import org.godotengine.godot.Dictionary
 
 class FirestoreResult(
@@ -17,15 +16,18 @@ class FirestoreResult(
     }
 
     constructor(
-		collection: String,
-		documents: Dictionary? = null,)
-     : this() {
+        collection: String,
+        documents: Dictionary? = null,
+    ) :
+        this() {
         this.rawData[COLLECTION_PROPERTY] = collection
-        if (documents != null) this.rawData[DOCUMENTS_PROPERTY] = documents
+        if (documents != null) {
+            this.rawData[DOCUMENTS_PROPERTY] = documents
+        }
     }
 
-    constructor(collection: String, querySnapshot: QuerySnapshot)
-     : this() {
+    constructor(collection: String, querySnapshot: QuerySnapshot) :
+        this() {
         val resultData = Dictionary()
         for (doc in querySnapshot.documents) {
             resultData[doc.id] = FirestoreDocument(doc).getRawData()

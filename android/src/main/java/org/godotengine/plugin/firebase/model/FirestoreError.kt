@@ -15,13 +15,17 @@ class FirestoreError(
     }
 
     constructor(
-		collection: String? = null,
-		documentId: String? = null,
-		error: String,
-    )
-     : this() {
-        if (collection != null) this.rawData[COLLECTION_PROPERTY] = collection
-        if (documentId != null) this.rawData[DOCUMENT_ID_PROPERTY] = documentId
+        collection: String? = null,
+        documentId: String? = null,
+        error: String,
+    ) :
+        this() {
+        if (collection != null) {
+            this.rawData[COLLECTION_PROPERTY] = collection
+        }
+        if (documentId != null) {
+            this.rawData[DOCUMENT_ID_PROPERTY] = documentId
+        }
         this.rawData[ERROR_PROPERTY] = error
     }
 

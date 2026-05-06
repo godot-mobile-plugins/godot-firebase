@@ -56,8 +56,8 @@ func get_collection(collection: String) -> void:
 
 
 func update_document(document: FirestoreDocument) -> void:
-		if _plugin_singleton:
-			_plugin_singleton.update_document(document.get_raw_data())
+	if _plugin_singleton:
+		_plugin_singleton.update_document(document.get_raw_data())
 
 
 func delete_document(collection: String, documentId: String) -> void:

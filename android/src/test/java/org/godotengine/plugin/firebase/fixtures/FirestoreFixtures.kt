@@ -30,7 +30,6 @@ import org.godotengine.plugin.firebase.model.FirestoreResult
  * that access those fields do not throw.
  */
 object FirestoreFixtures {
-
     // -------------------------------------------------------------------------
     // CollectionReference
     // -------------------------------------------------------------------------
@@ -100,15 +99,17 @@ object FirestoreFixtures {
     fun mockNestedDocumentSnapshot(
         id: String = "doc-nested",
         collectionPath: String = "test-collection",
-    ): DocumentSnapshot = mockDocumentSnapshot(
-        id = id,
-        collectionPath = collectionPath,
-        data = mapOf(
-            "name" to "Alice",
-            "meta" to mapOf("level" to 5, "active" to true),
-            "tags" to listOf("hero", "warrior"),
-        ),
-    )
+    ): DocumentSnapshot =
+        mockDocumentSnapshot(
+            id = id,
+            collectionPath = collectionPath,
+            data =
+                mapOf(
+                    "name" to "Alice",
+                    "meta" to mapOf("level" to 5, "active" to true),
+                    "tags" to listOf("hero", "warrior"),
+                ),
+        )
 
     // -------------------------------------------------------------------------
     // QuerySnapshot
@@ -118,9 +119,7 @@ object FirestoreFixtures {
      * Returns a mocked [QuerySnapshot] whose [QuerySnapshot.documents] list
      * contains [documents]. Defaults to an empty list (empty collection result).
      */
-    fun mockQuerySnapshot(
-        documents: List<DocumentSnapshot> = emptyList(),
-    ): QuerySnapshot =
+    fun mockQuerySnapshot(documents: List<DocumentSnapshot> = emptyList()): QuerySnapshot =
         mockk<QuerySnapshot>().also { qs ->
             every { qs.documents } returns documents
         }
@@ -155,7 +154,9 @@ object FirestoreFixtures {
         val dict = Dictionary()
         dict[FirestoreDocument.COLLECTION_PROPERTY] = collection
         dict[FirestoreDocument.DOCUMENT_ID_PROPERTY] = documentId
-        if (data != null) dict[FirestoreDocument.DOCUMENT_DATA_PROPERTY] = data
+        if (data != null) {
+            dict[FirestoreDocument.DOCUMENT_DATA_PROPERTY] = data
+        }
         return FirestoreDocument(dict)
     }
 

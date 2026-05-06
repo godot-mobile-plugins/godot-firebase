@@ -21,10 +21,10 @@ val androidDependencies =
     extensions
         .getByType<VersionCatalogsExtension>()
         .named("libs")
-        .run { 
+        .run {
             libraryAliases
                 .filter { it.startsWith("runtime.") }
-                .map { findLibrary(it).get().get() } 
+                .map { findLibrary(it).get().get() }
         }
 
 // -- Helpers -------------------------------------------------------------------

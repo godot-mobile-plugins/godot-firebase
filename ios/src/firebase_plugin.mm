@@ -4,6 +4,8 @@
 
 #import "firebase_plugin.h"
 
+#import <FirebaseCore/FirebaseCore.h>
+
 // Import full model headers BEFORE FirebasePluginSignalEmitter.h.
 // FirebasePluginSignalEmitter.h -> SignalEmitting.h only @class-forward-declares
 // FirestoreDocument, FirestoreError, and FirestoreResult. The full @interface
@@ -41,6 +43,10 @@
 // ---------------------------------------------------------------------------
 
 FirebasePlugin *FirebasePlugin::instance = NULL;
+
+FirebasePluginSignalEmitter *FirebasePlugin::signalEmitter = nil;
+Authentication *FirebasePlugin::authentication = nil;
+Firestore *FirebasePlugin::firestore = nil;
 
 void FirebasePlugin::_bind_methods() {
 	// Authentication methods
@@ -149,7 +155,7 @@ void FirebasePlugin::set_document(Dictionary document, bool merge) {
 
 void FirebasePlugin::get_document(String collection, String documentId) {
 	[firestore getDocument:[NSString stringWithUTF8String:(collection).utf8().get_data()]
-			   documentId:[NSString stringWithUTF8String:(documentId).utf8().get_data()]];
+				documentId:[NSString stringWithUTF8String:(documentId).utf8().get_data()]];
 }
 
 void FirebasePlugin::update_document(Dictionary document) {
@@ -158,7 +164,7 @@ void FirebasePlugin::update_document(Dictionary document) {
 
 void FirebasePlugin::delete_document(String collection, String documentId) {
 	[firestore deleteDocument:[NSString stringWithUTF8String:(collection).utf8().get_data()]
-				  documentId:[NSString stringWithUTF8String:(documentId).utf8().get_data()]];
+				   documentId:[NSString stringWithUTF8String:(documentId).utf8().get_data()]];
 }
 
 void FirebasePlugin::get_collection(String collection) {
@@ -167,12 +173,12 @@ void FirebasePlugin::get_collection(String collection) {
 
 void FirebasePlugin::track_document(String collection, String documentId) {
 	[firestore trackDocument:[NSString stringWithUTF8String:(collection).utf8().get_data()]
-				 documentId:[NSString stringWithUTF8String:(documentId).utf8().get_data()]];
+				  documentId:[NSString stringWithUTF8String:(documentId).utf8().get_data()]];
 }
 
 void FirebasePlugin::stop_tracking_document(String collection, String documentId) {
 	[firestore stopTrackingDocument:[NSString stringWithUTF8String:(collection).utf8().get_data()]
-					    documentId:[NSString stringWithUTF8String:(documentId).utf8().get_data()]];
+						 documentId:[NSString stringWithUTF8String:(documentId).utf8().get_data()]];
 }
 
 // ---------------------------------------------------------------------------
@@ -183,8 +189,16 @@ FirebasePlugin::FirebasePlugin() {
 	os_log_debug(firebase_log, "Plugin singleton constructor");
 
 	ERR_FAIL_COND(instance != NULL);
-
 	instance = this;
+
+	// Ensure Firebase is configured before any services (Auth/Firestore) are initialized
+	if ([FIRApp defaultApp] == nil) {
+		[FIRApp configure];
+		os_log_debug(firebase_log, "FirebaseApp configured successfully.");
+	} else {
+		os_log_debug(firebase_log, "FirebaseApp already configured.");
+	}
+
 	signalEmitter = [[FirebasePluginSignalEmitter alloc] initWithPlugin:this];
 	authentication = [[Authentication alloc] initWithEmitter:signalEmitter
 											  viewController:GDTAppDelegateService.viewController];

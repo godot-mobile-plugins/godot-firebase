@@ -339,9 +339,9 @@ Add this node as a direct child of `Firebase` to enable Cloud Firestore. It brid
 **Scene tree example:**
 ```
 Main (Node)
-└── Firebase (Firebase)
-    ├── FirebaseAuth (FirebaseAuth)
-    └── Firestore (Firestore)
+└-- Firebase (Firebase)
+    ├-- FirebaseAuth (FirebaseAuth)
+    └-- Firestore (Firestore)
 ```
 
 <a name="platform-specific-notes"></a>
@@ -350,6 +350,10 @@ Main (Node)
 
 ### Android
 - Download Android export template and enable gradle build from export settings
+- Log into the [Firebase Console](https://console.firebase.google.com/)
+   - Create a Firebase project and register your Android app
+   - Enable all necessary Firebase features (Auth, Firestore, etc.) that you plan to use
+   - Download `google-services.json` and place it in your project's `android/build/` directory prior to export
 - **Troubleshooting:**
 - Logs: `adb logcat | grep 'godot'` (Linux), `adb.exe logcat | select-string "godot"` (Windows)
 - You may find the following resources helpful:
@@ -360,7 +364,11 @@ Main (Node)
 
 ### iOS
 - Follow instructions on [Exporting for iOS](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html)
-- View XCode logs while running the game for troubleshooting.
+- Log into the [Firebase Console](https://console.firebase.google.com/)
+   - Create a Firebase project (or use existing project with Android app) and register your iOS app
+   - Enable all necessary Firebase features (Auth, Firestore, etc.) that you plan to use
+   - Download `GoogleService-Info.plist` and add it to your exported Xcode project
+- View Xcode logs while running the game for troubleshooting.
 - See [Godot iOS Export Troubleshooting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html#troubleshooting).
 
 <br>

@@ -4,7 +4,6 @@
 package org.godotengine.plugin.firebase.model
 
 import com.google.firebase.firestore.DocumentSnapshot
-
 import org.godotengine.godot.Dictionary
 
 class FirestoreDocument(
@@ -18,9 +17,10 @@ class FirestoreDocument(
 
     constructor(
         collection: String,
-		documentId: String,
-		documentData: Dictionary? = Dictionary(),)
-     : this() {
+        documentId: String,
+        documentData: Dictionary? = Dictionary(),
+    ) :
+        this() {
         this.rawData[COLLECTION_PROPERTY] = collection
         this.rawData[DOCUMENT_ID_PROPERTY] = documentId
         if (documentData != null && !documentData.isEmpty()) {
@@ -28,8 +28,8 @@ class FirestoreDocument(
         }
     }
 
-    constructor(documentSnapshot: DocumentSnapshot)
-     : this() {
+    constructor(documentSnapshot: DocumentSnapshot) :
+        this() {
         this.rawData[COLLECTION_PROPERTY] = documentSnapshot.reference.parent.path
         this.rawData[DOCUMENT_ID_PROPERTY] = documentSnapshot.id
         val dict = Dictionary()

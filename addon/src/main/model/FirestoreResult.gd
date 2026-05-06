@@ -21,7 +21,11 @@ func get_collection() -> String:
 func get_document(a_document_id: String) -> FirestoreDocument:
 	if not _data.has(DOCUMENTS_PROPERTY):
 		return null
-	return FirestoreDocument.new(_data[DOCUMENTS_PROPERTY][a_document_id]) if _data[DOCUMENTS_PROPERTY].has(a_document_id) else null
+	return (
+		FirestoreDocument.new(_data[DOCUMENTS_PROPERTY][a_document_id])
+		if _data[DOCUMENTS_PROPERTY].has(a_document_id)
+		else null
+	)
 
 
 func get_all_document_ids() -> Array:

@@ -9,8 +9,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FirestoreError : NSObject
 
 - (instancetype)initWithCollection:(nullable NSString *)collection
-                        documentId:(nullable NSString *)documentId
-                             error:(NSString *)error NS_DESIGNATED_INITIALIZER;
+						documentId:(nullable NSString *)documentId
+							 error:(NSString *)error NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init;
 

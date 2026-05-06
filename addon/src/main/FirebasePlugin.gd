@@ -58,30 +58,34 @@ class AndroidExportPlugin extends EditorExportPlugin:
 
 	func _get_android_dependencies(platform: EditorExportPlatform, debug: bool) -> PackedStringArray:
 		return PackedStringArray(ANDROID_DEPENDENCIES)
-	
+
 	func _export_begin(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> void:
 		if not features.has("android"):
 			return
-		
-		if (not get_option("gradle_build/use_gradle_build")) or (not FileAccess.file_exists("res://android/build/google-services.json")):
+
+		if ((not get_option("gradle_build/use_gradle_build")) or
+				(not FileAccess.file_exists("res://android/build/google-services.json"))):
 			_clean_line_from_file("res://android/build/build.gradle", BUILD_GRADLE_PLUGIN_LINE)
 			_clean_line_from_file("res://android/build/settings.gradle", SETTINGS_GRADLE_PLUGIN_LINE)
 			return
-		
+
 		# Modify build.gradle and settings.gradle
-		_insert_line_if_missing("res://android/build/build.gradle", "id 'org.jetbrains.kotlin.android'", BUILD_GRADLE_PLUGIN_LINE)
-		_insert_line_if_missing("res://android/build/settings.gradle", "id 'org.jetbrains.kotlin.android' version versions.kotlinVersion", SETTINGS_GRADLE_PLUGIN_LINE)
+		_insert_line_if_missing("res://android/build/build.gradle", "id 'org.jetbrains.kotlin.android'",
+				BUILD_GRADLE_PLUGIN_LINE)
+		_insert_line_if_missing(
+				"res://android/build/settings.gradle", "id 'org.jetbrains.kotlin.android' version versions.kotlinVersion",
+				SETTINGS_GRADLE_PLUGIN_LINE)
 
 
 	func _insert_line_if_missing(file_path: String, after_line: String, insert_line: String) -> void:
 		var text := FileAccess.open(file_path, FileAccess.READ).get_as_text()
 		if text.contains(insert_line):
 			return
-		
+
 		var lines := text.split("\n")
 		var result := PackedStringArray()
 		var inserted := false
-		
+
 		for line in lines:
 			result.append(line)
 			if not inserted and line.strip_edges() == after_line.strip_edges():
@@ -93,7 +97,7 @@ class AndroidExportPlugin extends EditorExportPlugin:
 						break
 				result.append(indent + insert_line)
 				inserted = true
-		
+
 		var file := FileAccess.open(file_path, FileAccess.WRITE)
 		file.store_string("\n".join(result))
 		file.close()
