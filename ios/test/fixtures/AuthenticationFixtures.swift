@@ -11,7 +11,7 @@ import UIKit
 
 /// Captures every signal emitted by Authentication so tests can assert on it
 /// without needing a live Godot object.
-final class MockAuthenticationEmitter: NSObject, AuthenticationEmitting {
+final class MockAuthenticationEmitter: NSObject, SignalEmitting {
 
 	private(set) var authSuccessUsers: [GodotFirebaseUser] = []
 	private(set) var authFailureErrors: [String] = []
@@ -50,6 +50,20 @@ final class MockAuthenticationEmitter: NSObject, AuthenticationEmitting {
 	func emitPasswordResetSent(_ success: Bool) { passwordResetSentValues.append(success) }
 	func emitEmailVerificationSent(_ success: Bool) { emailVerificationSentValues.append(success) }
 	func emitUserDeleted(_ success: Bool) { userDeletedValues.append(success) }
+
+	// Firestore signals — no-ops; MockAuthenticationEmitter is used only in
+	// auth tests and does not need to capture Firestore signals.
+	func emitDocumentWritten(_ document: FirestoreDocument) {}
+	func emitDocumentWriteFailed(_ error: FirestoreError) {}
+	func emitDocumentUpdated(_ document: FirestoreDocument) {}
+	func emitDocumentUpdateFailed(_ error: FirestoreError) {}
+	func emitDocumentDeleted(_ document: FirestoreDocument) {}
+	func emitDocumentDeleteFailed(_ error: FirestoreError) {}
+	func emitDocumentChanged(_ result: FirestoreDocument) {}
+	func emitDocumentQueryCompleted(_ result: FirestoreDocument) {}
+	func emitDocumentQueryFailed(_ error: FirestoreError) {}
+	func emitCollectionQueryCompleted(_ result: FirestoreResult) {}
+	func emitCollectionQueryFailed(_ error: FirestoreError) {}
 }
 
 // MARK: - MockAuthUser

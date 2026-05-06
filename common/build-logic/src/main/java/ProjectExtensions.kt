@@ -11,7 +11,7 @@ import org.gradle.api.Project
 // These Project extension functions are the public API for loading config data
 // classes in any project build script that applies id("base-conventions").
 //
-// Because they are defined in build-logic/src/main/kotlin/ they are on the
+// Because they are defined in build-logic/src/main/java/ they are on the
 // compilation classpath of every project build script that applies a build-logic
 // plugin.  The implicit receiver in a build script is the Project, so they are
 // callable without qualification:

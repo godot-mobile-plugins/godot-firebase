@@ -77,10 +77,10 @@ class Authentication(
     fun handleActivityResult(
         requestCode: Int,
         resultCode: Int,
-        data: Intent?,
+        intent: Intent?,
     ) {
         if (requestCode == GOOGLE_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            val task = GoogleSignIn.getSignedInAccountFromIntent(intent)
             try {
                 val account = task.getResult(ApiException::class.java)!!
                 Log.d(TAG, "authWithGoogle:" + account.id)
@@ -107,10 +107,11 @@ class Authentication(
         email: String,
         password: String,
     ) {
+        Log.d(TAG, "Creating user with email: $email")
         auth
             .createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
-                val godotUser = getCurrentUser()
+                val godotUser = getCurrentFirebaseUser()
                 if (godotUser == null) {
                     Log.e(TAG, "User creation succeeded but user is null.")
                     plugin.emitGodotSignal(SIGNAL_AUTH_FAILURE, "User creation succeeded but user is null.")
@@ -125,6 +126,7 @@ class Authentication(
     }
 
     fun linkAnonymousWithGoogle() {
+        Log.d(TAG, "Linking anonymous user with Google.")
         val currentUser = auth.currentUser
         if (currentUser == null) {
             Log.e(TAG, "No user signed in.")
@@ -145,10 +147,11 @@ class Authentication(
         email: String,
         password: String,
     ) {
+        Log.d(TAG, "Signing in with email: $email")
         auth
             .signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
-                val godotUser = getCurrentUser()
+                val godotUser = getCurrentFirebaseUser()
                 if (godotUser == null) {
                     Log.e(TAG, "Authentication succeeded but user is null.")
                     plugin.emitGodotSignal(SIGNAL_AUTH_FAILURE, "Authentication succeeded but user is null.")
@@ -163,20 +166,26 @@ class Authentication(
     }
 
     fun signInWithGoogle() {
+        Log.d(TAG, "Signing in with Google.")
         if (!::googleSignInClient.isInitialized) {
-            Log.e(TAG, "GoogleSignInClient not initialized.")
+            Log.e(TAG, "Google Sign-In not configured: googleSignInClient was never initialised.")
             plugin.emitGodotSignal(SIGNAL_AUTH_FAILURE, "Google Sign-In not initialized.")
             return
         }
         try {
             val signInIntent = googleSignInClient.signInIntent
             activity.startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
+        } catch (e: IllegalArgumentException) {
+            Log.e(TAG, "Google Sign-In config error: ${e.message}")
+            plugin.emitGodotSignal(SIGNAL_AUTH_FAILURE, e.message ?: "Google Sign-In not configured.")
         } catch (e: Exception) {
             Log.e(TAG, "Error starting Google Sign-In", e)
+            plugin.emitGodotSignal(SIGNAL_AUTH_FAILURE, "Error starting Google Sign-In: ${e.message}")
         }
     }
 
     fun signInAnonymously() {
+        Log.d(TAG, "Signing in anonymously.")
         val currentUser = auth.currentUser
         if (currentUser != null) {
             Log.d(
@@ -190,7 +199,7 @@ class Authentication(
         auth
             .signInAnonymously()
             .addOnSuccessListener {
-                val godotUser = getCurrentUser()
+                val godotUser = getCurrentFirebaseUser()
                 if (godotUser == null) {
                     Log.e(TAG, "Anonymous sign-in succeeded but user is null.")
                     plugin.emitGodotSignal(SIGNAL_AUTH_FAILURE, "Anonymous sign-in succeeded but user is null.")
@@ -208,6 +217,7 @@ class Authentication(
     fun isSignedIn(): Boolean = auth.currentUser != null
 
     fun signOut() {
+        Log.d(TAG, "Signing out.")
         auth.signOut()
         googleSignInClient
             .signOut()
@@ -221,6 +231,7 @@ class Authentication(
     }
 
     fun sendVerificationEmail() {
+        Log.d(TAG, "Sending verification email to user.")
         auth.currentUser
             ?.sendEmailVerification()
             ?.addOnSuccessListener {
@@ -234,6 +245,7 @@ class Authentication(
     }
 
     fun sendPasswordResetEmail(email: String) {
+        Log.d(TAG, "Sending password reset email to: $email.")
         auth
             .sendPasswordResetEmail(email)
             .addOnSuccessListener {
@@ -246,12 +258,14 @@ class Authentication(
             }
     }
 
-    fun getCurrentUser(): GodotFirebaseUser? {
-        val user = auth.currentUser ?: return null
-        return GodotFirebaseUser(user)
+    fun getCurrentUser(): Dictionary {
+        Log.d(TAG, "Getting current user.")
+        val user = getCurrentFirebaseUser()
+        return user?.getRawData() ?: Dictionary()
     }
 
     fun deleteCurrentUser() {
+        Log.d(TAG, "Deleting current user.")
         auth.currentUser
             ?.delete()
             ?.addOnSuccessListener {
@@ -264,12 +278,17 @@ class Authentication(
             }
     }
 
+    private fun getCurrentFirebaseUser(): GodotFirebaseUser? {
+        val user = auth.currentUser ?: return null
+        return GodotFirebaseUser(user)
+    }
+
     private fun authWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth
             .signInWithCredential(credential)
             .addOnSuccessListener { authResult ->
-                val godotUser = getCurrentUser()
+                val godotUser = getCurrentFirebaseUser()
                 if (godotUser == null) {
                     Log.e(TAG, "Authentication with Google succeeded but user is null.")
                     plugin.emitGodotSignal(
@@ -298,7 +317,7 @@ class Authentication(
         currentUser
             .linkWithCredential(credential)
             .addOnSuccessListener { authResult ->
-                val godotUser = getCurrentUser()
+                val godotUser = getCurrentFirebaseUser()
                 if (godotUser == null) {
                     Log.e(TAG, "linkWithCredential succeeded but user is null.")
                     plugin.emitGodotSignal(SIGNAL_LINK_FAILURE, "Link succeeded but user is null.")

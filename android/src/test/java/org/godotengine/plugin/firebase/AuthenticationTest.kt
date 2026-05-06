@@ -28,9 +28,8 @@ import io.mockk.verify
 import org.godotengine.godot.Godot
 import org.godotengine.plugin.firebase.fixtures.Fixtures
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -177,19 +176,18 @@ class AuthenticationTest {
     @DisplayName("getCurrentUser()")
     inner class GetCurrentUser {
         @Test
-        @DisplayName("returns a GodotFirebaseUser wrapping the current FirebaseUser")
+        @DisplayName("returns a Dictionary containing the current user's data")
         fun `wraps current user`() {
             signInAs(Fixtures.mockFirebaseUser(uid = "curr-uid"))
             val godotUser = authentication.getCurrentUser()
-            assertNotNull(godotUser)
-            assertTrue(godotUser!!.userId == "curr-uid")
+            assertEquals("curr-uid", godotUser["user_id"])
         }
 
         @Test
-        @DisplayName("returns null when no user is signed in")
-        fun `returns null when signed out`() {
+        @DisplayName("returns an empty Dictionary when no user is signed in")
+        fun `returns empty dictionary when signed out`() {
             signOutState()
-            assertNull(authentication.getCurrentUser())
+            assertTrue(authentication.getCurrentUser().isEmpty())
         }
     }
 
@@ -616,7 +614,7 @@ class AuthenticationTest {
             authentication.handleActivityResult(
                 requestCode = 1234,
                 resultCode = Activity.RESULT_OK,
-                data = null,
+                intent = null,
             )
 
             verify(exactly = 0) { mockPlugin.emitGodotSignal(any(), any()) }
@@ -625,7 +623,7 @@ class AuthenticationTest {
         @Test
         @DisplayName("emits auth_failure when Google account task throws ApiException")
         fun `emits auth_failure on ApiException`() {
-            val data = mockk<Intent>()
+            val mockedIntent = mockk<Intent>()
 
             @Suppress("UNCHECKED_CAST")
             val failedTask = mockk<Task<GoogleSignInAccount>>()
@@ -633,12 +631,12 @@ class AuthenticationTest {
                 failedTask.getResult(ApiException::class.java)
             } throws ApiException(Status(7, "Network error"))
 
-            every { GoogleSignIn.getSignedInAccountFromIntent(data) } returns failedTask
+            every { GoogleSignIn.getSignedInAccountFromIntent(mockedIntent) } returns failedTask
 
             authentication.handleActivityResult(
                 requestCode = 9001,
                 resultCode = Activity.RESULT_OK,
-                data = data,
+                intent = mockedIntent,
             )
 
             verify { mockPlugin.emitGodotSignal("auth_failure", any()) }
@@ -654,19 +652,19 @@ class AuthenticationTest {
             every { mockActivity.startActivityForResult(any(), any()) } just Runs
             authentication.linkAnonymousWithGoogle() // sets isLinkingAnonymous = true
 
-            val data = mockk<Intent>()
+            val mockedIntent = mockk<Intent>()
 
             @Suppress("UNCHECKED_CAST")
             val failedTask = mockk<Task<GoogleSignInAccount>>()
             every {
                 failedTask.getResult(ApiException::class.java)
             } throws ApiException(Status(7, "Network error"))
-            every { GoogleSignIn.getSignedInAccountFromIntent(data) } returns failedTask
+            every { GoogleSignIn.getSignedInAccountFromIntent(mockedIntent) } returns failedTask
 
             authentication.handleActivityResult(
                 requestCode = 9001,
                 resultCode = Activity.RESULT_OK,
-                data = data,
+                intent = mockedIntent,
             )
 
             verify { mockPlugin.emitGodotSignal("link_with_google_failure", any()) }

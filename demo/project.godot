@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Firebase Demo"
-config/tags=PackedStringArray("android", "demo", "ios", "plugin")
+config/tags=PackedStringArray("android", "demo", "firebase", "ios", "plugin")
 run/main_scene="uid://daro5x6n3pd26"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/firebase-android.png"

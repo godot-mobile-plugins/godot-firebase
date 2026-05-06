@@ -182,7 +182,7 @@ final class GodotFirebaseUserTests: XCTestCase {
 
 	func test_rawDataDictionary_isNotNil() {
 		XCTAssertFalse(GodotFirebaseUser().rawDataDictionary.isEmpty == false
-					&& GodotFirebaseUser().rawDataDictionary.isEmpty == true)
+			&& GodotFirebaseUser().rawDataDictionary.isEmpty == true)
 		XCTAssertNotNil(GodotFirebaseUser().rawDataDictionary as [String: Any]?)
 	}
 

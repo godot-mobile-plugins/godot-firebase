@@ -21,7 +21,7 @@ import UIKit
 	// MARK: State
 	// -----------------------------------------------------------------------
 
-	private let emitter: any AuthenticationEmitting
+	private let emitter: any SignalEmitting
 
 	/// Injected auth provider — FirebaseAuthWrapper in production,
 	/// MockAuth in unit tests.
@@ -49,7 +49,7 @@ import UIKit
 
 	/// Production initialiser — called from FirebasePlugin.mm.
 	/// Uses the real Firebase Auth and Google Sign-In singletons.
-	@objc public init(emitter: any AuthenticationEmitting, viewController: UIViewController) {
+	@objc public init(emitter: any SignalEmitting, viewController: UIViewController) {
 		self.emitter = emitter
 		self.auth = FirebaseAuthWrapper()
 		self.googleSignIn = GIDSignInWrapper()
@@ -60,7 +60,7 @@ import UIKit
 	/// reach it without exposing it as part of the public API.
 	/// No Firebase singleton is touched.
 	init(
-		emitter: any AuthenticationEmitting,
+		emitter: any SignalEmitting,
 		auth: AuthProviding,
 		googleSignIn: GoogleSignInProviding,
 		viewController: UIViewController? = nil

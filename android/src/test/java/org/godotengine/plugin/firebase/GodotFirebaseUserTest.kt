@@ -222,36 +222,36 @@ class GodotFirebaseUserTest {
         @Test
         @DisplayName("dictionary contains the user_id key")
         fun `dictionary contains user_id`() {
-            val data = Fixtures.godotFirebaseUser(uid = "xyz-789").getRawData()
-            assertEquals("xyz-789", data[GodotFirebaseUser.USER_ID_PROPERTY])
+            val rawData = Fixtures.godotFirebaseUser(uid = "xyz-789").getRawData()
+            assertEquals("xyz-789", rawData[GodotFirebaseUser.USER_ID_PROPERTY])
         }
 
         @Test
         @DisplayName("dictionary contains the name key")
         fun `dictionary contains name`() {
-            val data = Fixtures.godotFirebaseUser(displayName = "Carol").getRawData()
-            assertEquals("Carol", data[GodotFirebaseUser.NAME_PROPERTY])
+            val rawData = Fixtures.godotFirebaseUser(displayName = "Carol").getRawData()
+            assertEquals("Carol", rawData[GodotFirebaseUser.NAME_PROPERTY])
         }
 
         @Test
         @DisplayName("dictionary contains the email key")
         fun `dictionary contains email`() {
-            val data = Fixtures.godotFirebaseUser(email = "carol@example.com").getRawData()
-            assertEquals("carol@example.com", data[GodotFirebaseUser.EMAIL_PROPERTY])
+            val rawData = Fixtures.godotFirebaseUser(email = "carol@example.com").getRawData()
+            assertEquals("carol@example.com", rawData[GodotFirebaseUser.EMAIL_PROPERTY])
         }
 
         @Test
         @DisplayName("dictionary contains the is_email_verified key")
         fun `dictionary contains is_email_verified`() {
-            val data = Fixtures.godotFirebaseUser(isEmailVerified = true).getRawData()
-            assertEquals(true, data[GodotFirebaseUser.IS_EMAIL_VERIFIED_PROPERTY])
+            val rawData = Fixtures.godotFirebaseUser(isEmailVerified = true).getRawData()
+            assertEquals(true, rawData[GodotFirebaseUser.IS_EMAIL_VERIFIED_PROPERTY])
         }
 
         @Test
         @DisplayName("dictionary contains the is_anonymous key")
         fun `dictionary contains is_anonymous`() {
-            val data = Fixtures.godotAnonymousUser().getRawData()
-            assertEquals(true, data[GodotFirebaseUser.IS_ANONYMOUS_PROPERTY])
+            val rawData = Fixtures.godotAnonymousUser().getRawData()
+            assertEquals(true, rawData[GodotFirebaseUser.IS_ANONYMOUS_PROPERTY])
         }
 
         @Test
@@ -267,9 +267,9 @@ class GodotFirebaseUserTest {
             val user = GodotFirebaseUser()
             user.userId = "mutated-uid"
             user.email = "mutated@example.com"
-            val data = user.getRawData()
-            assertEquals("mutated-uid", data[GodotFirebaseUser.USER_ID_PROPERTY])
-            assertEquals("mutated@example.com", data[GodotFirebaseUser.EMAIL_PROPERTY])
+            val rawData = user.getRawData()
+            assertEquals("mutated-uid", rawData[GodotFirebaseUser.USER_ID_PROPERTY])
+            assertEquals("mutated@example.com", rawData[GodotFirebaseUser.EMAIL_PROPERTY])
         }
     }
 
