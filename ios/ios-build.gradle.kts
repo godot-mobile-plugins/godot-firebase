@@ -717,7 +717,7 @@ tasks {
             val testTargetName = "${pluginConfig.pluginModuleName}_plugin_tests"
 
             println("Updating Xcode project with SPM dependencies...")
-            println("  → Module target '$moduleName' (compile-only, not linked):")
+            println("  - Module target '$moduleName' (compile-only, not linked):")
             deps.forEach { dep ->
                 dep.products.forEach { product ->
                     println("      • $product")
@@ -744,7 +744,7 @@ tasks {
             val spmTestConfigFile = file("$projectDir/config/spm_test_dependencies.json")
             val testDeps = if (spmTestConfigFile.exists()) readSpmDependencies(spmTestConfigFile) else deps
 
-            println("  → Test target '$testTargetName' (compile + link):")
+            println("  - Test target '$testTargetName' (compile + link):")
             testDeps.forEach { dep ->
                 dep.products.forEach { product ->
                     println("      • $product")
