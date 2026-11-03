@@ -352,7 +352,8 @@ Main (Node)
 - Download Android export template and enable gradle build from export settings
 - Log into the [Firebase Console](https://console.firebase.google.com/)
    - Create a Firebase project and register your Android app
-   - Enable all necessary Firebase features (Auth, Firestore, etc.) that you plan to use
+		- Use same unique ID when exporting Godot app
+   - Enable all necessary Firebase features (Email Auth, Google Auth, Firestore, etc.) that you plan to use
    - Download `google-services.json` and place it in your project's `android/build/` directory prior to export
 - **Troubleshooting:**
 - Logs: `adb logcat | grep 'godot'` (Linux), `adb.exe logcat | select-string "godot"` (Windows)
@@ -377,8 +378,7 @@ Main (Node)
 
 # <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/main/icon.png" width="24"> Links
 
-- [AssetLib Entry Android](https://godotengine.org/asset-library/asset/9999)
-- [AssetLib Entry iOS](https://godotengine.org/asset-library/asset/8888)
+- [Asset Store Entry](https://store.godotengine.org/asset/cengiz/firebase-plugin)
 
 <br>
 
